@@ -1,0 +1,48 @@
+{% load static %}
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% endblock %}</title>
+    
+  </head>
+
+  <body class="box-border">
+    <div class="flex flex-col items-center pb-10 w-[100vw] h-auto ">
+
+      <header class=" flex w-[100vw] h-[8%] p-5 "> 
+        <ul class="flex w-[80vw] h-[100%]  items-center px-8 ">
+          <li class="w-20 h-10 bg-green-500 hover:bg-green-600 text-slate-100 mr-2 rounded flex items-center justify-center">
+            <a href="#">Inicio</a>
+          </li>
+
+          <li class="w-20 h-10 bg-green-500 hover:bg-green-600 text-slate-100 mr-2 rounded flex items-center justify-center">
+            <a href=" {% url 'view_vacancies' %}">Vagas</a>
+          </li>
+
+          <li class="w-20 h-10 bg-green-500 hover:bg-green-600 text-slate-100 mr-2 rounded flex items-center justify-center">
+            <a href="#">Sobre</a>
+          </li>
+        </ul>
+
+        <!-- Button Login Header -->
+        <div class=" w-[20vw] h-[100%] flex items-center justify-end mr-8">
+          <li class="w-20 h-10 bg-green-500 hover:bg-green-600 text-slate-100 rounded flex items-center justify-center">
+            <a href="{% url 'login' %}">Entrar</a>
+          </li>
+        </div>
+      </header>
+
+      <h3 class=" font-bold text-xl my-10 ">
+        {% block title-page %}{% endblock title-page %}
+      </h3>
+
+      <main class=" py-10 rounded-lg border-solid border-2 border-black-100 container flex flex-wrap items-center justify-center w-[100vw] h-auto">
+        {% block main %}{% endblock main %}
+      </main>
+    </div>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+  </body>
+</html>

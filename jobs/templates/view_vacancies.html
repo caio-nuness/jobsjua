@@ -1,0 +1,28 @@
+{% extends "jobs/base.html" %}
+
+{% block title %} Veja nossas vagas{% endblock %}
+
+{% block title-page %}
+  VEJA NOSSAS VAGAS
+{% endblock title-page %}
+
+{% block main %}
+
+  {% for item in vacancie %}
+    <a href="{% url 'view_one_vacancie' id_vacancie=1 %}" class="w-[20%] h-auto bg-green-100  hover:bg-green-200  p-2 rounded-lg m-2 border-solid border-2 border-black-100">
+      <strong class="text-[12px] text-black-900" >{{ item.create_at }}</strong> <br>
+      <br>
+      <strong>Titulo: </strong>{{ item.title }}<br>
+      <strong>Empresa: </strong> {{ item.enterprise }} <br>
+      <strong>Email: </strong> {{ item.email }} <br>
+      <strong>Whatsapp: </strong> {{ item.whatsapp }} <br> 
+      <strong>Salário: </strong> {{ item.wage }}  <br>
+      <strong>Modalidade: </strong> {{ item.modality }} <br>
+      <strong>Jornada: </strong> {{ item.weekly_journey }} <br>
+      <strong>Turno: </strong> {{ item.work_shift }} <br>
+      <strong>Descrição: </strong> 
+      <p> {{ item.description|truncatewords:20 }} </p>
+    </a>
+  {% endfor %}
+
+{% endblock main %}
