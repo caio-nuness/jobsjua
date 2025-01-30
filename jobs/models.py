@@ -1,21 +1,26 @@
 from django.db import models
-   
-class Enterprise(models.Model):
+from django.contrib.auth.models import AbstractUser
+
+
+class Enterprise(AbstractUser):
 
   HIRING_CHOICES = (
     (True, "Sim"),
     (False, "Não"),
   )
 
-  cnpj = models.CharField(max_length=14, null=False, blank=False, verbose_name="CNPJ")
+  cnpj = models.CharField(max_length=14, null=False, blank=False,unique=True, verbose_name="CNPJ")
   social_name = models.CharField(max_length=200, blank=False, null=False, verbose_name="Razão social")
   sector = models.CharField(max_length=200, verbose_name="Setor")
   email = models.EmailField(blank=False, null=False, verbose_name="Email")
   phone = models.CharField(max_length=11, blank=False, null=False, verbose_name="Telefone")
   whatsapp = models.CharField(max_length=11, blank=False, null=True, verbose_name="WhatsApp")
-  is_hiring = models.BooleanField(choices=HIRING_CHOICES, verbose_name="Está contratando")
+  is_hiring = models.BooleanField(choices=HIRING_CHOICES, verbose_name="Está contratando", null=False, default=True)
   password = models.CharField(max_length=200, verbose_name="Senha")
   re_password = models.CharField(max_length=200, verbose_name="Confirme senha")
+
+  REQUIRED_FIELDS = ['cnpj', 'social_name']
+
 
   def __str__(self):
     return self.social_name
