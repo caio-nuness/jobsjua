@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
-
 class Enterprise(AbstractUser):
 
   HIRING_CHOICES = (
@@ -9,21 +8,24 @@ class Enterprise(AbstractUser):
     (False, "Não"),
   )
 
+  # minha razão social vai ser o username
   cnpj = models.CharField(max_length=14, null=False, blank=False,unique=True, verbose_name="CNPJ")
-  social_name = models.CharField(max_length=200, blank=False, null=False, verbose_name="Razão social")
   sector = models.CharField(max_length=200, verbose_name="Setor")
-  email = models.EmailField(blank=False, null=False, verbose_name="Email")
   phone = models.CharField(max_length=11, blank=False, null=False, verbose_name="Telefone")
   whatsapp = models.CharField(max_length=11, blank=False, null=True, verbose_name="WhatsApp")
   is_hiring = models.BooleanField(choices=HIRING_CHOICES, verbose_name="Está contratando", null=False, default=True)
-  password = models.CharField(max_length=200, verbose_name="Senha")
-  re_password = models.CharField(max_length=200, verbose_name="Confirme senha")
 
-  REQUIRED_FIELDS = ['cnpj', 'social_name']
+
+  REQUIRED_FIELDS = [
+    'cnpj'
+  ]
+
+  class Meta:
+    verbose_name_plural = 'Empresas'
 
 
   def __str__(self):
-    return self.social_name
+    return self.username
 
 class Vacancie(models.Model):
 
@@ -75,11 +77,15 @@ class Vacancie(models.Model):
 
   create_at = models.DateTimeField(auto_now=True)
 
+  class Meta:
+    verbose_name_plural = 'Vagas'
+
+
 
   def __str__(self):
     return self.title
 
-class User(models.Model):
+class Unemployed(models.Model):
   name = models.CharField(max_length=100, blank=False, null=False, )
   email_for_hiring = models.EmailField(max_length=200)
   phone = models.CharField(max_length=11, blank=False, null=False)
@@ -87,6 +93,10 @@ class User(models.Model):
   password = models.CharField(max_length=200)
   re_password = models.CharField(max_length=200)
   vacancies = models.ForeignKey(Vacancie, verbose_name="Vagas",default="", on_delete=models.CASCADE)
+
+  class Meta:
+    verbose_name_plural = 'Usuários'
+
 
   def __str__(self):
     return self.name

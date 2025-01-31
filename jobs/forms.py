@@ -1,7 +1,9 @@
 from django import forms
-from .models import Enterprise, User, Vacancie
+from django.contrib.auth.forms import UserCreationForm
 
-class EnterpriseForm(forms.ModelForm):
+from .models import Enterprise, Unemployed, Vacancie
+
+class EnterpriseForm(UserCreationForm):
   
   HIRING_CHOICES = (
     (True, "Sim"),
@@ -19,7 +21,7 @@ class EnterpriseForm(forms.ModelForm):
     )
   )
   
-  social_name = forms.CharField(
+  username = forms.CharField(
     empty_value=False,
       widget=forms.TextInput(
         attrs={
@@ -80,34 +82,26 @@ class EnterpriseForm(forms.ModelForm):
   )
 
   password = forms.CharField(
+
     widget=forms.PasswordInput(
       attrs={
         'class': 'block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-green-500 sm:text-sm/6',
-        'placeholder': 'Digite sua senha novamente'
+        'placeholder': 'Informe a sua senha.'
       }
     )
   )
   
-  re_password = forms.CharField(
-    widget=forms.PasswordInput(
-      attrs={
-        'class': 'block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-green-500 sm:text-sm/6',
-        'placeholder': 'Digite sua senha novamente'
-      }
-    )
-  )
-
-  class Meta:
+  class Meta(UserCreationForm.Meta):
     model = Enterprise
-    fields = ("__all__")
+    fields = UserCreationForm.Meta.fields
 
-class UserForm(forms.ModelForm):
+class UnemployedForm(forms.ModelForm):
 
   password = forms.CharField(max_length=200, widget=forms.PasswordInput)
   re_password = forms.CharField(max_length=200, widget=forms.PasswordInput)
 
   class Meta:
-    model = User
+    model = Unemployed
     fields = ("__all__")
   
 class VacancieForm(forms.ModelForm):
