@@ -1,46 +1,52 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-
-from jobs.forms import EnterpriseForm
-from jobs.models import Enterprise
-
-from django.contrib.auth import authenticate, login
-from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
+from django.contrib.auth import login as login_enterprise
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.hashers import make_password
-
+from jobs.forms import EnterpriseForm, LoginForm
+from jobs.models import Enterprise
 
 
 def login(request):
 
   if request.method == "GET":
 
-    user = Enterprise.objects.all()
-    context = { 'user': user }
+    form = LoginForm()
+    context = {'form': form}
 
     return render(request, template_name="login.html", context=context)
   
   else:
 
-    
-   
-    email = request.POST.get('email')
-    password = request.POST.get('password')
+    new_email = request.POST.get('email')
+    new_password = request.POST.get('password')
 
-    enterprise = Enterprise.objects.get(email=email, password=password) 
-   
-    if enterprise:  
-      enterprise = authenticate(email=email, password=password)
-      return redirect('platform')
+    # o email informado está sendo validado - vendo se existe mesmo na base de dados
+    email = Enterprise.objects.filter(email=new_email).first()
+
+    if email: # se ele existir faz isso aqui ate aqui funciona normal
+
+      # autentica o usuario com os dados informados
+      enterprise = authenticate(email=new_email, password=new_password)
+
+      # se a autenticação não der None e a empresa estiver Ativa
+      if enterprise is not None and enterprise.is_active:
+        login_enterprise(request, enterprise)
+        return redirect('platform')
+      
+      else: 
+        return HttpResponse(f'ERROR: Resultado da autenticação:  {enterprise}')
 
     else:
-      return HttpResponse('Nao foi possivel autenticar')
-     
+      return HttpResponse('nao existe na base de dados "email"')
+   
 def register(request):
 
   if request.method == "GET":
+
     form = EnterpriseForm()
     context = {'form':form}
+
     return render(request, "register_enterprise.html", context=context )
 
   else :
@@ -53,7 +59,7 @@ def register(request):
     is_hiring = request.POST.get('is_hiring')
     password = request.POST.get('password')
     
-# Adicionando os dados do formulario no meu model
+    # ADICIONANDO OS DADOS DO FORM NO MODEL USER MODIFICADO "Enterprise"
     new_enterprise = Enterprise(
       cnpj=cnpj,
       username=username,
@@ -65,15 +71,13 @@ def register(request):
       password=password,
     )
 
+    # VERIFICANDO SE O CNPJ INFORMADO JÁ EXISTE NA BASE DE DADOS
     cnpj_is_valid = Enterprise.objects.filter(cnpj=cnpj).first()
 
-    #adicionar um set_password
-    # vaidação de cnpj existente
-    if cnpj_is_valid:
+    if cnpj_is_valid: # SE O RETORNO FOR TRUE - NÃO CONCLUI O CADASTRO
       return HttpResponse('CNPJ ja existe na base de dados, tente novamente!')
     
-    else:
-      # Modifiquei o create user e deu certo a senha
+    else: # SE O RETORN FOR FALSE - CRIA O CADASTRO DA EMPRESA - COM SUCESSO
       new_enterprise = Enterprise.objects.create_user(
         cnpj=cnpj,
         username=username,
@@ -90,8 +94,12 @@ def register(request):
       new_enterprise.save()
       
       return HttpResponse('Empresa cadastrada com sucesso!')
+      # FALTA IMPLEMENTAR REDIRECIONAMENTO PARA A PAGINA DE LOGIN SE O CADASTRO FOR CONCLUIDO
     
+@login_required(login_url='login') #  redireciona user não autenticado
+def platform(request): # ESSA VIEW SO PODE SER ACESSADA SE O USUARIO ESTIVER LOGADO/AUTENTICADO
+    return render(request, template_name='platform.html')
 
-@login_required
-def platform(request):
-  return render(request, template_name='platform.html')
+# view para deslogar o usuario
+def logout(request):
+  return HttpResponse("Pagina de logout")

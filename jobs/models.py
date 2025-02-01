@@ -15,6 +15,8 @@ class Enterprise(AbstractUser):
   whatsapp = models.CharField(max_length=11, blank=False, null=True, verbose_name="WhatsApp")
   is_hiring = models.BooleanField(choices=HIRING_CHOICES, verbose_name="Está contratando", null=False, default=True)
 
+  # tive que ir na class AbstractUser e modificar o campo email para unico manualmente
+  USERNAME_FIELD = 'email'
 
   REQUIRED_FIELDS = [
     'cnpj'
@@ -23,9 +25,11 @@ class Enterprise(AbstractUser):
   class Meta:
     verbose_name_plural = 'Empresas'
 
+  
 
   def __str__(self):
     return self.username
+  
 
 class Vacancie(models.Model):
 

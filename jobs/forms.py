@@ -110,3 +110,29 @@ class VacancieForm(forms.ModelForm):
     model = Vacancie
     fields = ("__all__")
 
+class LoginForm(forms.ModelForm):
+
+  email = forms.CharField(
+    empty_value=False,
+    required=True,
+      widget=forms.TextInput(
+        attrs={
+          'class': 'block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-green-500 sm:text-sm/6',
+          'placeholder': 'Informe o email cadastrado...'
+        }
+    )
+  )
+
+  password = forms.CharField(
+    widget=forms.PasswordInput(
+      attrs={
+        'class': 'block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-green-500 sm:text-sm/6',
+        'placeholder': 'Informe a sua senha...'
+      }
+    )
+  )
+
+  class Meta:
+    model = Enterprise
+    fields = ("email", "password")
+
