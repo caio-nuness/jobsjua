@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate
-from django.contrib.auth import login as login_enterprise
+from django.contrib.auth import login as login_enterprise, logout as logout_platform
 from django.contrib.auth.decorators import login_required
 from jobs.forms import EnterpriseForm, LoginForm
-from jobs.models import Enterprise
+from jobs.models import Enterprise, Vacancie
 
 
 def login(request):
@@ -68,7 +68,7 @@ def register(request):
       phone=phone,
       whatsapp=whatsapp,
       is_hiring=is_hiring,
-      password=password,
+      password=password
     )
 
     # VERIFICANDO SE O CNPJ INFORMADO JÁ EXISTE NA BASE DE DADOS
@@ -98,8 +98,35 @@ def register(request):
     
 @login_required(login_url='login') #  redireciona user não autenticado
 def platform(request): # ESSA VIEW SO PODE SER ACESSADA SE O USUARIO ESTIVER LOGADO/AUTENTICADO
-    return render(request, template_name='platform.html')
 
-# view para deslogar o usuario
+    # MOSTRAR AS VAGAS REFERENTES A EMPRESA QUE ESTÁ LOGADA
+
+    # PEGA A EMPRESA QUE ESTÁ LOGADA
+    enterprise_loggedin = request.user
+
+    # BUSCA A VAGA EM QUE A EMPRESA QUE CADASTROU == A EMPRESA QUE ESTÁ LOGADA
+    company_vacancie = Vacancie.objects.filter(enterprise=enterprise_loggedin)
+
+
+    print(enterprise_loggedin, company_vacancie)
+
+    # SIRVO A VAGA DA MANEIRA QUE EU PREFERI
+   
+
+    context = {
+      "company_vacancie": company_vacancie,
+    }
+    
+    return render(request, template_name='platform.html', context=context)
+
+@login_required(login_url='login')
 def logout(request):
-  return HttpResponse("Pagina de logout")
+  logout_platform(request)
+  return redirect("login")
+
+
+
+  # ==== views das vags
+
+
+  return HttpResponse("Apagar Vagas")

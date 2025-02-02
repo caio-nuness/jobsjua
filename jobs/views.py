@@ -24,8 +24,8 @@ def view_one_vacancie(request, id_vacancie):
 def create_job(request):
   return HttpResponse("Criar Vaga")
 
-def refresh_jobs(request):
+def update_job(request):
   return HttpResponse("Atualizar Vagas")
 
-def erase_jobs(request):
-  return HttpResponse("Apagar Vagas")
+def delete_job(request):
+  return HttpResponse("Atualizar Vagas")

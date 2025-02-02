@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import Enterprise, Unemployed, Vacancie
+from .models import Enterprise, Vacancie
 
 
 
@@ -16,6 +16,5 @@ class EnterpriseAdmin(admin.ModelAdmin):
 
   search_fields = ('cnpj',)
 
-admin.site.register(Unemployed)
 admin.site.register(Vacancie)
 

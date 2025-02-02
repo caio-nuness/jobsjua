@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
-from .models import Enterprise, Unemployed, Vacancie
+from .models import Enterprise, Vacancie
 
 class EnterpriseForm(UserCreationForm):
   
@@ -94,15 +94,6 @@ class EnterpriseForm(UserCreationForm):
   class Meta(UserCreationForm.Meta):
     model = Enterprise
     fields = UserCreationForm.Meta.fields
-
-class UnemployedForm(forms.ModelForm):
-
-  password = forms.CharField(max_length=200, widget=forms.PasswordInput)
-  re_password = forms.CharField(max_length=200, widget=forms.PasswordInput)
-
-  class Meta:
-    model = Unemployed
-    fields = ("__all__")
   
 class VacancieForm(forms.ModelForm):
 

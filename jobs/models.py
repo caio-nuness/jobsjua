@@ -19,7 +19,7 @@ class Enterprise(AbstractUser):
   USERNAME_FIELD = 'email'
 
   REQUIRED_FIELDS = [
-    'cnpj'
+    'username'
   ]
 
   class Meta:
@@ -30,7 +30,6 @@ class Enterprise(AbstractUser):
   def __str__(self):
     return self.username
   
-
 class Vacancie(models.Model):
 
   TYPE_MODALITY = (
@@ -88,19 +87,3 @@ class Vacancie(models.Model):
 
   def __str__(self):
     return self.title
-
-class Unemployed(models.Model):
-  name = models.CharField(max_length=100, blank=False, null=False, )
-  email_for_hiring = models.EmailField(max_length=200)
-  phone = models.CharField(max_length=11, blank=False, null=False)
-  whatsapp = models.CharField(max_length=11, blank=False, null=False)
-  password = models.CharField(max_length=200)
-  re_password = models.CharField(max_length=200)
-  vacancies = models.ForeignKey(Vacancie, verbose_name="Vagas",default="", on_delete=models.CASCADE)
-
-  class Meta:
-    verbose_name_plural = 'Usuários'
-
-
-  def __str__(self):
-    return self.name
