@@ -18,3 +18,5 @@ buscar ID com
 
    vagas = Vacancie.objects.all()
    vagas.id
+   print()
+
