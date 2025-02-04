@@ -14,20 +14,6 @@ def view_vacancies(request):
 def view_one_vacancie(request, id):
 
   vacancie = Vacancie.objects.get(id=id)
-
-  title =  vacancie.title
-  enterprise = vacancie.enterprise
-  email = vacancie.email
-  whatsapp = vacancie.whatsapp
-  wage = vacancie.wage
-  modality = vacancie.modality
-  jorney = vacancie.weekly_journey
-  work_shift = vacancie.work_shift
-  state = vacancie.state
-  description = vacancie.description
-  criado= vacancie.create_at
-
-  print(f'{title} - {enterprise} - {email} - {whatsapp} - {wage} - {modality} - {jorney} - {work_shift} - {state} - {description}- {criado}')
   
   context = {'vacancie': vacancie}
 

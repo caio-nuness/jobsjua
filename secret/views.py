@@ -100,7 +100,6 @@ def register(request):
 def platform(request): # ESSA VIEW SO PODE SER ACESSADA SE O USUARIO ESTIVER LOGADO/AUTENTICADO
 
 
-
     # PEGA A EMPRESA QUE ESTÁ LOGADA
     enterprise_loggedin = request.user
 
@@ -111,17 +110,17 @@ def platform(request): # ESSA VIEW SO PODE SER ACESSADA SE O USUARIO ESTIVER LOG
     company_vacancie = Vacancie.objects.filter(enterprise=enterprise_loggedin)
 
    
-  
+    print(company_vacancie)
 
+   
 
 
     # SIRVO A VAGA DA MANEIRA QUE EU PREFERI
-  
-   
-
     context = {
       "company_vacancie": company_vacancie,
     }
+
+
     
     return render(request, template_name='platform.html', context=context)
 
