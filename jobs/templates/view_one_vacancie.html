@@ -1,74 +1,70 @@
 {% extends "jobs/base.html" %}
 
-{% block title %} detalhes da vaga: {{ id_vacancie }}{% endblock %}
+{% block title-page %} 
+  {{vacancie.enterprise|upper}} - {{ vacancie|upper }} 
+{% endblock title-page %}
 
 {% block main %}
-<div class=" w-[40vw] h-auto bg-green-200 rounded flex flex-col p-5">
 
-    <strong># {{ id_vacancie }}</strong> <br>
+  <div class=" 
+    w-[90vw] h-auto bg-green-200 rounded flex flex-col p-5
+    md:w-[50vw] md:bg-pink-200 
+    lg:w-[40vw] lg:bg-pink-600
+  ">
 
-    <ul class="flex flex-wrap">
-      <li class="mt-2 p-4">
+    <strong class="text-[14px] text-black-900">VAGA DE N°: {{vacancie.id}}</strong> 
+    <strong class="text-[14px] text-black-900" >CRIADA EM: {{ vacancie.create_at }}</strong> <br>
+
+    <ul class="flex flex-wrap text-[1.2rem]">
+      <li class=" mt-2 p-4">
         <strong >Titulo:</strong> 
-        <p>Vaga de Motorista</p>
+        <p>{{vacancie.title}}</p>
       </li>
 
       <li class="mt-2 p-4">
         <strong>Empresa:</strong> 
-        <p>Andrade Gutierrez</p>
+        <p>{{vacancie.enterprise}}</p>
       </li>
 
       <li class="mt-2 p-4">
         <strong>Email:</strong> 
-        <p>Andrade@gutierrez.com</p>
+        <p>{{vacancie.email}}</p>
       </li>
 
       <li class="mt-2 p-4">
         <strong>WhatsApp:</strong> 
-        <p>74988594619</p>
+        <p>{{vacancie.whatsapp}}</p>
       </li>
 
       <li class="mt-2 p-4">
         <strong>Tipo:</strong> 
-        <p>CLT</p>
+        <p>{{vacancie.modality}}</p>
       </li>
 
       <li class="mt-2 p-4">
         <strong>Jornada semanal:</strong> 
-        <p>44 hrs</p>
+        <p>{{vacancie.weekly_journey}}</p>
       </li>
 
       
        <li class="mt-2 p-4">
         <strong>Salário:</strong> 
-        <p>R$1504,00</p>
+        <p>R${{vacancie.wage}}</p>
       </li>
 
       <li class="mt-2 p-4">
         <strong>Turno:</strong> 
-        <p>Diurno</p>
+        <p>{{vacancie.work_shift}}</p>
       </li>
 
       <li class="mt-2 p-4">
         <strong>Descrição:</strong> 
         <p >
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Fugiat reprehenderit, sit suscipit aperiam hic modi? Dolores
-          quae repudiandae labore nisi saepe.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Fugiat reprehenderit, sit suscipit aperiam hic modi? Dolores
-          quae repudiandae labore nisi saepe.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Fugiat reprehenderit, sit suscipit aperiam hic modi? Dolores
-          quae repudiandae labore nisi saepe.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Fugiat reprehenderit, sit suscipit aperiam hic modi? Dolores
-          quae repudiandae labore nisi saepe.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Fugiat reprehenderit, sit suscipit aperiam hic modi? Dolores
-          quae repudiandae labore nisi saepe.
+          {{ vacancie.description }}
         </p>
       </li>
     </ul>
   </div>
+
+
 {% endblock main %}

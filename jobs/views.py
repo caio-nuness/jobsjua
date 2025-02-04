@@ -6,18 +6,30 @@ from .models import Vacancie
 def view_vacancies(request):
 
   vacancie = Vacancie.objects.all()
-  context = { 'vacancie': vacancie }
 
+  context = { 'vacancie': vacancie }
+  # coloca o id do item que eu cliquei
   return render(request, template_name="view_vacancies.html", context=context)
 
-def view_one_vacancie(request, id_vacancie):
+def view_one_vacancie(request, id):
 
-  one_vacancie = Vacancie.objects.all()  
+  vacancie = Vacancie.objects.get(id=id)
+
+  title =  vacancie.title
+  enterprise = vacancie.enterprise
+  email = vacancie.email
+  whatsapp = vacancie.whatsapp
+  wage = vacancie.wage
+  modality = vacancie.modality
+  jorney = vacancie.weekly_journey
+  work_shift = vacancie.work_shift
+  state = vacancie.state
+  description = vacancie.description
+  criado= vacancie.create_at
+
+  print(f'{title} - {enterprise} - {email} - {whatsapp} - {wage} - {modality} - {jorney} - {work_shift} - {state} - {description}- {criado}')
   
-  context = {
-    'id_vacancie': id_vacancie, 
-    'one_vacancie': one_vacancie
-  }
+  context = {'vacancie': vacancie}
 
   return render(request, template_name='view_one_vacancie.html', context=context)
 

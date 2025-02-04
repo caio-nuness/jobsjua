@@ -51,7 +51,10 @@
       </h3>
 
       <!-- ========== CONTEUDO PRINCIPAL ========== -->
-      <main class=" py-10 rounded-lg border-solid border-2 border-black-100 container flex flex-wrap items-center justify-center w-[100vw] h-auto">
+      <main class=" py-5 rounded-lg border-solid border-2 border-black-100 container flex flex-wrap flex-col-reverse   items-center justify-center w-[90vw] h-auto
+        md:bg-red-500 
+        lg:bg-blue-500 lg:flex-row-reverse lg:w-[70vw]
+      ">
         {% block main %}{% endblock main %}
       </main>
 
