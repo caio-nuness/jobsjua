@@ -10,6 +10,7 @@ class Enterprise(AbstractUser):
 
   # minha razão social vai ser o username
   cnpj = models.CharField(max_length=14, null=False, blank=False,unique=True, verbose_name="CNPJ")
+  email = models.EmailField(unique=True, verbose_name="Email")
   sector = models.CharField(max_length=200, verbose_name="Setor")
   phone = models.CharField(max_length=11, blank=False, null=False, verbose_name="Telefone")
   whatsapp = models.CharField(max_length=11, blank=False, null=True, verbose_name="WhatsApp")
@@ -28,7 +29,7 @@ class Enterprise(AbstractUser):
   
 
   def __str__(self):
-    return self.username
+    return f"{self.username}" 
   
 class Vacancie(models.Model):
 

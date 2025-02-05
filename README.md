@@ -1,21 +1,18 @@
 # jobsjua
 
-## 1 Fix
-- Quando o usuario está deslogando... não está deslogando de fato
-- so está movendo para a tela de login da pra visualizar pq não muda 
-- o botão de login e logout 
+## Ajustes de Templates - "auth/platform"
 
-## 2 Fix
-- desenvolver as rotas internas liberadas apenas para as empresas
-- para VER uma unica vaga e para CRIAR uma nova vaga e DELETAR 
+- Template de Visualização das vagas que o usuario logado ja criou - "auth/platform"
 
-## 3 Fix
-- Tanto no secret quanto no padão, resolver a questão do ID davaga que 
-- ta sendo passado como parametro todas estão ficando com o mesmo id
+- Em "auth/platform" quado a empresa está logada - Fazer sumir o button de "Vagas" e "Sobre"
 
-buscar ID com  
-   empresa = request.user
+- Quando Logado = Botão "Inicio" vai redirecionar para "auth/platform"
 
-   vagas = Vacancie.objects.all()
-   vagas.id
+- Ajustar espaçamentos das vagas que estão na pagina inicial da empresa em "auth/platform"
+
+- Ajustar a rota "auth/platform" para os tamanhos "md, lg" no tailwindcss
+
+## Ajustes de templates - "base.html"
+
+- Criar um rodapé que vai ficar em todas as paginas para colocar meu link do insta
   

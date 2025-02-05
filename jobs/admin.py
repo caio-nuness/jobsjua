@@ -9,7 +9,7 @@ class EnterpriseAdmin(admin.ModelAdmin):
 
   list_display = (
     'id', 'username', 'cnpj', 'sector',
-    'email', 'whatsapp', 'is_superuser','password'
+    'email', 'whatsapp', 'is_superuser',
   )
 
   list_display_links = ('username',)

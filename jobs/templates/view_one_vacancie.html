@@ -1,7 +1,7 @@
 {% extends "jobs/base.html" %}
 
 {% block title-page %} 
-  {{vacancie.enterprise|upper}} - {{ vacancie|upper }} 
+  {{ vacancie|upper }} 
 {% endblock title-page %}
 
 {% block main %}
@@ -17,7 +17,7 @@
 
     <ul class="flex flex-wrap text-[1.2rem]">
       <li class=" mt-2 p-4">
-        <strong >Titulo:</strong> 
+        <strong >Vaga:</strong> 
         <p>{{vacancie.title}}</p>
       </li>
 
