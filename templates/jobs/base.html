@@ -13,37 +13,71 @@
   <body class="box-border">
     <div class="flex flex-col items-center pb-10 w-[100vw] h-auto ">
 
-      <!-- ========== CABEÇALHO ========== -->
-      <header class=" flex w-[100vw] justify-center h-[8%] p-5"> 
-        <ul class="flex w-[80vw] h-[100%]  items-center px-8 ">
-          <li class="w-20 h-10 bg-green-500 hover:bg-green-600 text-slate-100 mr-2 rounded flex items-center justify-center">
-            <a href="#">Inicio</a>
-          </li>
+      <!-- ========== CABEÇALHO PARA EMPRESA AUTENTICADA ========== -->
+      {% if user.is_authenticated == True %}
+        <header class=" flex w-[100vw] items-center justify-around h-[10vh] py-2"> 
 
-          <li class="w-20 h-10 bg-green-500 hover:bg-green-600 text-slate-100 mr-2 rounded flex items-center justify-center">
-            <a href=" {% url 'view_vacancies' %}">Vagas</a>
-          </li>
+          <div class="flex w-[70vw] h-[100%]  justify-start items-center ">
+            <a href="{% url 'platform' %}" 
+              class="w-auto ml-4 h-10 px-4 bg-green-500 hover:bg-green-600 text-slate-100 rounded flex items-center justify-center">
+              Ver vagas
+            </a>
 
-          <li class="w-20 h-10 bg-green-500 hover:bg-green-600 text-slate-100 mr-2 rounded flex items-center justify-center">
-            <a href="#">Sobre</a>
-          </li>
-        </ul>
+            <a href="{% url 'new_vacancie' %}" 
+              class="w-auto ml-2 h-10 px-4 bg-green-500 hover:bg-green-600 text-slate-100 rounded flex items-center justify-center">
+              Criar vaga
+            </a>
+          </div>
+            
+          <div class=" w-[30vw]  h-[100%] flex items-center justify-center
+            md:justify-end">
+                <a href="{% url 'logout' %}"
+                  class="w-20 h-10 bg-red-800 hover:bg-red-700 text-slate-100 rounded flex items-center justify-center
+                  md:mr-4
+                ">
+                  Sair
+                </a>
+          </div>
 
-        <!-- BOTÃO DE LOGIN - DEFINIÇÃO -->
-        <div class=" w-[20vw] h-[100%] flex items-center justify-end mr-8">
-        
-          <!-- CONDICIONAL PARA MOSTRAR BOTÃO DE ENTRAR OU SAIR DO SISTEMA SE ESTÁ LOGADO OU NÃO -->
-          {% if user.is_authenticated == True %}
-            <li class="w-20 h-10 bg-green-500 hover:bg-green-600 text-slate-100 rounded flex items-center justify-center">
-              <a href="{% url 'logout' %}">Sair</a>
-            </li>
-          {% else %}
-            <li class="w-20 h-10 bg-green-500 hover:bg-green-600 text-slate-100 rounded flex items-center justify-center">
-              <a href="{% url 'login' %}">Entrar</a>
-            </li>
-          {% endif %}
-        </div>
-      </header>
+        </header>
+      {% else %}
+        <!-- ========== CABEÇALHO PARA EMPRESA NÃO AUTENTICADA ========== -->
+        <header class=" flex w-[100vw] items-center justify-around h-[10vh] py-2"> 
+          <div class="flex w-[70vw] h-[100%]  justify-around items-center
+            md:justify-start"
+          >
+
+            <a href="#"
+              class=" w-20 h-10 bg-green-500 hover:bg-green-600 text-slate-100 rounded flex items-center justify-center
+              md:ml-4"
+            > Inicio
+            </a>
+
+            <a href="{% url 'view_vacancies' %}" 
+              class="w-20 h-10 bg-green-500 hover:bg-green-600 text-slate-100 rounded flex items-center justify-center
+              md:ml-2">
+              Vagas
+            </a>
+
+            <a href="#"
+              class="w-20 h-10 bg-green-500 hover:bg-green-600 text-slate-100 rounded flex items-center justify-center
+              md:ml-2"
+            >
+              Sobre
+            </a>
+          </div>
+            
+            <div class=" w-[30vw] h-[100%] flex items-center justify-center 
+              md:justify-end"
+            >
+                <a href="{% url 'login' %}"
+                  class="w-20 h-10 bg-green-800 hover:bg-green-700 text-slate-100 rounded flex items-center justify-center
+                  md:mr-4">
+                  Entrar
+                </a>
+            </div>
+        </header>
+      {% endif %}
 
       <!-- ========== TITULO DAS PAGINAS ========== -->
       <h2 class=" font-bold text-xl my-10 ">
@@ -51,9 +85,10 @@
       </h2>
 
       <!-- ========== CONTEUDO PRINCIPAL ========== -->
-      <main class="py-0 rounded-lg border-solid border-2 border-black-100 container flex flex-wrap flex-col-reverse   items-center w-[90vw] h-auto
-        md:bg-red-500 
-        lg:bg-blue-500 lg:flex-row-reverse lg:w-[70vw]
+      <main class="py-5 rounded-lg border-solid border-2 border-black-100 container flex flex-wrap flex-col-reverse   items-center w-[90vw] h-auto
+        md:flex-row-reverse md:w-[90vw] md:flex-wrap md:justify-center
+
+        lg:flex-row-reverse lg:w-[70vw] lg:flex-wrap lg:justify-center
       ">
         {% block main %}{% endblock main %}
       </main>

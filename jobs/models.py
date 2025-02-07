@@ -25,6 +25,7 @@ class Enterprise(AbstractUser):
 
   class Meta:
     verbose_name_plural = 'Empresas'
+    permissions = {}
 
   
 
@@ -80,6 +81,8 @@ class Vacancie(models.Model):
   description = models.TextField(max_length=2000, blank=False, null=False, verbose_name="Descrição")
 
   create_at = models.DateTimeField(auto_now=True)
+
+  USERNAME_FIELD = 'email'
 
   class Meta:
     verbose_name_plural = 'Vagas'

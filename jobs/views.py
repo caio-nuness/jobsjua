@@ -2,6 +2,9 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Vacancie
 
+
+def home(request):
+  return HttpResponse('home page')
 # VIEWS REFERENTE AS VAGAS 
 def view_vacancies(request):
 
@@ -18,12 +21,3 @@ def view_one_vacancie(request, id):
   context = {'vacancie': vacancie}
 
   return render(request, template_name='view_one_vacancie.html', context=context)
-
-def create_job(request):
-  return HttpResponse("Criar Vaga")
-
-def update_job(request):
-  return HttpResponse("Atualizar Vagas")
-
-def delete_job(request):
-  return HttpResponse("Atualizar Vagas")

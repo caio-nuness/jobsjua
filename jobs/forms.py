@@ -16,7 +16,7 @@ class EnterpriseForm(UserCreationForm):
       widget=forms.TextInput(
         attrs={
           'class': 'block w-full rounded-sm  px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-green-500 sm:text-sm/6',
-          'placeholder': 'Informe sua razão social'
+          'placeholder': 'Informe o seu CNPJ....'
         }
     )
   )
@@ -94,13 +94,8 @@ class EnterpriseForm(UserCreationForm):
   class Meta(UserCreationForm.Meta):
     model = Enterprise
     fields = UserCreationForm.Meta.fields
+
   
-class VacancieForm(forms.ModelForm):
-
-  class Meta:
-    model = Vacancie
-    fields = ("__all__")
-
 class LoginForm(forms.ModelForm):
 
   email = forms.CharField(

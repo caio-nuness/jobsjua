@@ -4,6 +4,8 @@ from django.contrib.auth import authenticate
 from django.contrib.auth import login as login_enterprise, logout as logout_platform
 from django.contrib.auth.decorators import login_required
 from jobs.forms import EnterpriseForm, LoginForm
+
+from secret.forms import VacancieForm
 from jobs.models import Enterprise, Vacancie
 
 
@@ -44,8 +46,14 @@ def register(request):
 
   if request.method == "GET":
 
+    user = request.user
+    
     form = EnterpriseForm()
-    context = {'form':form}
+
+    context = {
+      'form':form,
+      'user': user,
+    }
 
     return render(request, "register_enterprise.html", context=context )
 
@@ -123,6 +131,30 @@ def platform(request): # ESSA VIEW SO PODE SER ACESSADA SE O USUARIO ESTIVER LOG
 
     
     return render(request, template_name='platform.html', context=context)
+
+@login_required(login_url='login')
+def secret_one_vacancie(request, id):
+
+  vacancie = Vacancie.objects.get(id=id)
+
+  context = { 'vacancie': vacancie }
+
+  return render(request, template_name="secret_one_vacancie.html", context=context)
+
+@login_required(login_url='login')
+def new_vacancie(request):
+
+  # Empresa que está logada - "Mais Que Bom"
+  enterprise_on = request.user
+
+  form  = VacancieForm()
+
+  context = {
+    'enterprise_on': enterprise_on,
+    'form': form,
+  }
+
+  return render(request, template_name="register_vacancie.html", context=context)
 
 @login_required(login_url='login')
 def logout(request):

@@ -10,23 +10,18 @@
 
   {% for item in vacancie %}
     <a href="{% url 'view_one_vacancie' id=item.id %}" class="w-[95%] 
-      h-auto bg-green-100  hover:bg-green-200  p-4 rounded-md my-2
-      md:bg-pink-500 md:w-[20%]
-      lg:bg-red-500 lg:ml-4
+      h-auto bg-green-500  hover:bg-green-400  p-4 rounded-md my-2
+       md:ml-4 md:w-[25%]
+       lg:ml-4 lg:w-[25%]
     ">
       <strong class="text-[12px] text-black-900" >{{ item.create_at }}</strong> <br>
       <br>
      
       <strong>Titulo: </strong>{{ item.title }}<br>
       <strong>Empresa: </strong> {{ item.enterprise }} <br>
-      <strong>Email: </strong> {{ item.email }} <br>
-      <strong>Whatsapp: </strong> {{ item.whatsapp }} <br> 
       <strong>Salário: </strong> {{ item.wage }}  <br>
       <strong>Modalidade: </strong> {{ item.modality }} <br>
       <strong>Jornada: </strong> {{ item.weekly_journey }} <br>
-      <strong>Turno: </strong> {{ item.work_shift }} <br>
-      <strong>Descrição: </strong> 
-      <p> {{ item.description|truncatewords:10 }} </p>
     </a>
   {% endfor %}
 
