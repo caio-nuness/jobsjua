@@ -25,7 +25,6 @@ class Enterprise(AbstractUser):
 
   class Meta:
     verbose_name_plural = 'Empresas'
-    permissions = {}
 
   
 
@@ -62,7 +61,7 @@ class Vacancie(models.Model):
 
   title = models.CharField(max_length=200, blank=False, null=False, verbose_name="Titulo")
 
-  enterprise = models.ForeignKey(Enterprise, on_delete=models.CASCADE, verbose_name="Empresa")
+  enterprise = models.ForeignKey(Enterprise,on_delete=models.CASCADE, verbose_name="Empresa")
 
   email = models.CharField(max_length=200, blank=False, null=False, verbose_name="Email")
 

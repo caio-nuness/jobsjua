@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rolepermissions',
     'secret',
     'jobs',
    
@@ -127,4 +128,6 @@ STATICFILES_DIRS = [ BASE_DIR / 'static']
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Referencia para o Modelo de User que Subistitui
 AUTH_USER_MODEL = 'jobs.Enterprise'
+

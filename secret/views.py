@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
+
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as login_enterprise, logout as logout_platform
 from django.contrib.auth.decorators import login_required
-from jobs.forms import EnterpriseForm, LoginForm
 
 from secret.forms import VacancieForm
+from jobs.forms import EnterpriseForm, LoginForm
 from jobs.models import Enterprise, Vacancie
 
 
@@ -101,35 +102,21 @@ def register(request):
 
         new_enterprise.save()
         
-        return HttpResponse('Empresa cadastrada com sucesso!')
-        # FALTA IMPLEMENTAR REDIRECIONAMENTO PARA A PAGINA DE LOGIN SE O CADASTRO FOR CONCLUIDO
+        return redirect('login')
     
-@login_required(login_url='login') #  redireciona user não autenticado
-def platform(request): # ESSA VIEW SO PODE SER ACESSADA SE O USUARIO ESTIVER LOGADO/AUTENTICADO
-
+@login_required(login_url='login')
+def platform(request): 
 
     # PEGA A EMPRESA QUE ESTÁ LOGADA
     enterprise_loggedin = request.user
-
-    # MOSTRAR AS VAGAS REFERENTES A EMPRESA QUE ESTÁ LOGADA
-    print(enterprise_loggedin)
-
+    
     # BUSCA A VAGA EM QUE A EMPRESA QUE CADASTROU == A EMPRESA QUE ESTÁ LOGADA
     company_vacancie = Vacancie.objects.filter(enterprise=enterprise_loggedin)
 
-   
-    print(company_vacancie)
-
-   
-
-
-    # SIRVO A VAGA DA MANEIRA QUE EU PREFERI
     context = {
       "company_vacancie": company_vacancie,
     }
 
-
-    
     return render(request, template_name='platform.html', context=context)
 
 @login_required(login_url='login')
@@ -144,17 +131,70 @@ def secret_one_vacancie(request, id):
 @login_required(login_url='login')
 def new_vacancie(request):
 
-  # Empresa que está logada - "Mais Que Bom"
-  enterprise_on = request.user
+  if request.method == "GET":
 
-  form  = VacancieForm()
+    enterprise = Enterprise.objects.get(username=request.user)
 
-  context = {
-    'enterprise_on': enterprise_on,
-    'form': form,
-  }
+    form  = VacancieForm()
 
-  return render(request, template_name="register_vacancie.html", context=context)
+    context = {
+      'form': form,
+      'enterprise':enterprise
+    }
+
+    return render(request, template_name="register_vacancie.html", context=context)
+  
+  else:
+
+    # COLETA OS DADOS DO FORMULARIO
+    title = request.POST.get('title')
+    enterprise = Enterprise.objects.get(username=request.user) # PEGA A EMPRESA LOGADA COMO PADRÃO
+    email = request.POST.get('email')
+    whatsapp = request.POST.get('whatsapp')
+    wage = request.POST.get('wage')
+    modality = request.POST.get('modality')
+    weekly_journey = request.POST.get('weekly_journey')
+    work_shift = request.POST.get('work_shift')
+    state = request.POST.get('state')
+    description = request.POST.get('description')
+
+    # ATRELA OS DADOS COLETADOS AO MODEL VACANCIE
+    new_vacancie = Vacancie.objects.create(
+      title=title,
+      enterprise=enterprise,
+      email=email,
+      whatsapp=whatsapp,
+      wage=wage,
+      modality=modality,
+      weekly_journey=weekly_journey,
+      work_shift=work_shift,
+      state=state,
+      description=description
+    )
+    
+    new_vacancie.save()
+
+    return redirect('platform')
+
+@login_required(login_url='login')
+def edit_vacancie(request, id):
+
+  if request.method == "GET":
+
+    vacancie = Vacancie.objects.get(id=id)
+
+    form = VacancieForm(instance=vacancie)
+
+    context = {
+      'vacancie': vacancie,
+      'form': form
+    }
+
+    return render(request, template_name='edit_vacancie.html', context=context)
+  
+
+    # Criar Logica Para atualizar a vaga
+
 
 @login_required(login_url='login')
 def logout(request):
