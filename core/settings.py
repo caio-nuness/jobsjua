@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-+z-cqsz686h^4!6gn3&+-=6rd#$gjwyhv6boilvrdu^+p2jb&!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.1.7', 'localhost']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_icons',
     'secret',
     'jobs',
    
@@ -129,4 +130,19 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Referencia para o Modelo de User que Subistitui
 AUTH_USER_MODEL = 'jobs.Enterprise'
+
+# CONFIG DA LIB DOS ICONES [django-icons]
+DJANGO_ICONS = {
+    "ICONS": {
+        "login": {"name": "fa-duotone fa-solid fa-right-to-bracket"},
+        "logout": {"name": "fa-solid fa-arrow-right-from-bracket"},
+        "delete": {"name": "fa-solid fa-trash"},
+        "edit": {"name": "fa-solid fa-pen-to-square"},
+        "home": {"name": "fa-solid fa-house"},
+        "happy": {"name": "fa-regular fa-face-smile-beam"},
+        "arow_right": {"name": "fa-solid fa-right-long"},
+        "arow_left": {"name": "fa-solid fa-left-long"},
+       
+    },
+}
 
