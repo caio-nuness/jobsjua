@@ -27,24 +27,19 @@
     {% endfor %}
     
     <div class="
-      my-4 px-6 py-4 w-full flex justify-evenly items-center radius-sm
+      my-4 py-4 w-full flex justify-center items-center radius-sm
       md:px-60 
       ld:px-70 
     ">
       {% if page.has_previous %}
-        <a href="{% url 'view_vacancies' %}?page={{page.previous_page_number}}" class="text-lg p-2">{% icon 'arow_left' %}</a>
+        <a href="{% url 'view_vacancies' %}?page={{page.previous_page_number}}" class="flex items-center justify-center px-3 h-8 text-sm font-medium text-white bg-[#344e41]  hover:bg-[#588157] rounded-s duration-300">{% icon 'arow_left' %}</a>
       {% endif %}
 
-      {{page}}
+      <h2 class="mx-4 italic">{{page.number}} de {{page.paginator.num_pages}}</h2> 
 
-      {% if page.has_next %}
-        <a href="{% url 'view_vacancies' %}?page={{page.next_page_number}}" class="text-lg p-2">{% icon 'arow_right' %}</a>
+      {% if page.has_next %}<Page 2 of 3> 
+        <a href="{% url 'view_vacancies' %}?page={{page.next_page_number}}" class="flex items-center justify-center px-3 h-8 text-sm font-medium text-white bg-[#344e41]  hover:bg-[#588157] rounded-s duration-300">{% icon 'arow_right' %}</a>
       {% endif %}
     </div>
-    
-  
-
- 
-
 
 {% endblock main %}

@@ -13,7 +13,7 @@
   </head>
 
   <body class="box-border">
-    <div class="flex flex-col items-center pb-10 w-[100vw] h-auto ">
+    <div class="flex flex-col items-center  w-[100vw] h-auto ">
 
       <!-- ========== CABEÇALHO PARA EMPRESA AUTENTICADA ========== -->
       {% if user.is_authenticated == True %}
@@ -69,12 +69,14 @@
             </a>
           </div>
             
-            <div class=" w-[30vw] h-[100%] flex items-center justify-center 
-              md:justify-end"
-            >
+            <div class="w-[30vw] h-[100%] flex items-center justify-center 
+              md:justify-end
+            ">
                 <a href="{% url 'login' %}"
-                  class="w-20 h-10 px-1 bg-[#344E41] hover:bg-[#3A5A40] duration-300 text-slate-100 rounded flex items-center justify-around
-                  md:mr-4">
+                  class="w-[80%] h-10 px-1 bg-[#344E41] hover:bg-[#3A5A40] duration-300 text-slate-100 rounded flex items-center justify-evenly
+                  md:mr-4 md:w-[30%]
+                  lg:w-[20%]
+                ">
                   Entrar {% icon 'login' %}
                 </a>
             </div>
@@ -88,12 +90,18 @@
       </h2>
 
       <!-- ========== CONTEUDO PRINCIPAL ========== -->
-      <main class="py-5 rounded-lg border-solid border-2 border-black-100 container flex flex-wrap flex-col-reverse   items-center w-[90vw] h-auto
+      <main class="py-5 rounded-lg border-solid border-2 border-black-100 container flex flex-wrap flex-col-reverse   items-center w-[90%] h-auto
         md:flex-row md:w-[90vw] md:flex-wrap md:justify-center
         lg:flex-row lg:w-[70vw] lg:flex-wrap lg:justify-center
       ">
         {% block main %}{% endblock main %}
       </main>
+
+      <footer class="w-[100%] h-[10%]  flex items-center justify-center my-4">
+        <div>
+          © Desenvolvido por <a class="text-[#588157] font-bold" href="mailto:caio.ayslan.nunes@gmail.com">Caio Cavalcante</a> - <a href="tel:+5574988594619" class="text-[#588157] font-bold">74988594619</a>
+        </div>
+      </footer>
 
     </div>
 

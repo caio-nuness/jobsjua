@@ -19,6 +19,7 @@ def view_vacancies(request):
 
   # Passa o meu objeto listado
   page = vacancie_paginator.get_page(page_num)
+  print(page.paginator.num_pages)
 
   context = { 
     'page': page,

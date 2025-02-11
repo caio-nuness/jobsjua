@@ -9,6 +9,8 @@ from secret.forms import VacancieForm
 from jobs.forms import EnterpriseForm, LoginForm
 from jobs.models import Enterprise, Vacancie
 
+from django.core.paginator import Paginator
+
 # REFERENTE A PARTE EXTERNA DA PLATAFORMA
 def login(request):
 
@@ -109,8 +111,15 @@ def platform(request):
     # BUSCA A VAGA EM QUE A EMPRESA QUE CADASTROU == A EMPRESA QUE ESTÁ LOGADA
     company_vacancie = Vacancie.objects.filter(enterprise=enterprise_loggedin)
 
+    vacancie_paginator = Paginator(company_vacancie, 1)
+    page_num = request.GET.get('page')
+
+    page = vacancie_paginator.get_page(page_num)
+
+
     context = {
       "company_vacancie": company_vacancie,
+      "page": page
     }
 
     return render(request, template_name='platform.html', context=context)
