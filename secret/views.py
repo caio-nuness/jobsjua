@@ -11,6 +11,9 @@ from jobs.models import Enterprise, Vacancie
 
 from django.core.paginator import Paginator
 
+from pprint import pprint
+import requests
+
 # REFERENTE A PARTE EXTERNA DA PLATAFORMA
 def login(request):
 
@@ -43,10 +46,16 @@ def login(request):
       return HttpResponse('nao existe na base de dados "email"')
 
 def register(request):
-
+  
+  """
+    ESSA FUNÇÃO REGISTRA UM USUARIO APENAS SE
+    - O CNPJ INFORMADO EXISTIR
+    - O CNPJ INFORMADO NÃO EXISTA NA BASE DE DADOS 
+  """
+   
   if request.method == "GET":
-    user = request.user
-    
+
+    user = request.user 
     form = EnterpriseForm()
 
     context = {
@@ -65,42 +74,57 @@ def register(request):
       whatsapp = request.POST.get('whatsapp')
       is_hiring = request.POST.get('is_hiring')
       password = request.POST.get('password')
-    
-    # ADICIONANDO OS DADOS DO FORM NO MODEL USER MODIFICADO "Enterprise"
-      new_enterprise = Enterprise(
-        cnpj=cnpj,
-        username=username,
-        sector=sector,
-        email=email,
-        phone=phone,
-        whatsapp=whatsapp,
-        is_hiring=is_hiring,
-        password=password
-      )
 
-      #VERIFICANDO SE O CNPJ INFORMADO JÁ EXISTE NA BASE DE DADOS
-      cnpj_is_valid = Enterprise.objects.filter(cnpj=cnpj).first()
+      try:
+        response = requests.get(f'https://api.cnpjs.dev/v1/{cnpj}')
+        data = response.json()
+        cnpj_api = data['cnpj']
 
-      if cnpj_is_valid: # SE O RETORNO FOR TRUE - NÃO CONCLUI O CADASTRO
-        return HttpResponse('CNPJ ja existe na base de dados, tente novamente!')
+        # SE O CNPJ EXISTIR NA BASE DE DADOS -  NÃO FOR NULL
+        if cnpj_api == cnpj:
+
+          # ADICIONANDO OS DADOS DO FORM NO MODEL USER MODIFICADO "Enterprise"
+          new_enterprise = Enterprise(
+            cnpj=cnpj,
+            username=username,
+            sector=sector,
+            email=email,
+            phone=phone,
+            whatsapp=whatsapp,
+            is_hiring=is_hiring,
+            password=password
+          )
+
+          #VERIFICANDO SE O CNPJ INFORMADO JÁ EXISTE NA BASE DE DADOS
+          cnpj_is_valid = Enterprise.objects.filter(cnpj=cnpj).first()
+
+          if cnpj_is_valid: # SE O RETORNO FOR TRUE - NÃO CONCLUI O CADASTRO
+            return HttpResponse('CNPJ ja existe na base de dados, tente novamente!')
+          
+          else: # SE O RETURN FOR FALSE - CRIA O CADASTRO DA EMPRESA - COM SUCESSO
+            new_enterprise = Enterprise.objects.create_user(
+              cnpj=cnpj,
+              username=username,
+              sector=sector,
+              email=email,
+              phone=phone,
+              whatsapp=whatsapp,
+              is_hiring=is_hiring,
+              password=password,
+              is_active=True,
+              is_staff=True,
+            )
+
+            new_enterprise.save()
+            
+            return redirect('login')
+          
+      except:
+        print("Ocorreu um erro na requisição")
+        return HttpResponse("Ocorreu um erro na Requisição")
       
-      else: # SE O RETURN FOR FALSE - CRIA O CADASTRO DA EMPRESA - COM SUCESSO
-        new_enterprise = Enterprise.objects.create_user(
-          cnpj=cnpj,
-          username=username,
-          sector=sector,
-          email=email,
-          phone=phone,
-          whatsapp=whatsapp,
-          is_hiring=is_hiring,
-          password=password,
-          is_active=True,
-          is_staff=True,
-        )
-
-        new_enterprise.save()
-        
-        return redirect('login')
+    
+      
 
 # VER TODAS AS VAGAS
 @login_required(login_url='login')
