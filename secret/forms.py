@@ -129,5 +129,42 @@ class VacancieForm(UserCreationForm):
   )
 
   class Meta(UserCreationForm.Meta):
-    model = Vacancie
+    model = Enterprise
+    fields = ("__all__")
+
+class RecoveryPasswordForm(UserCreationForm):
+
+  email = forms.CharField(
+    empty_value=False,
+    required=True,
+    widget=forms.EmailInput(
+      attrs={
+        'class': 'block w-full rounded-sm bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-[#588157] sm:text-sm/6',
+        'placeholder': 'Informe o email da sua conta...'
+      }
+    )
+  )
+
+  password = forms.CharField(
+
+    widget=forms.PasswordInput(
+      attrs={
+        'class': 'block w-full rounded-sm bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-[#588157] sm:text-sm/6',
+        'placeholder': 'Informe uma senha...'
+      }
+    )
+  )
+
+  password2 = forms.CharField(
+
+    widget=forms.PasswordInput(
+      attrs={
+        'class': 'block w-full rounded-sm bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-[#588157] sm:text-sm/6',
+        'placeholder': 'Confirme sua nova senha...'
+      }
+    )
+  )
+
+  class Meta(UserCreationForm.Meta):
+    model = Enterprise
     fields = ("__all__")

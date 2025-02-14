@@ -5,8 +5,9 @@
   - Criar pagina de sobre para os usuarios normais
 
 ## View
-  - validar o cnpj informado  e entrar somente se existir de fato
-  - criar estrategia para recuperação de senha
+  - criar estrategia para recuperação de senha -
+  - terminar a view para cadastrar uma nova senha que nem a de atualizar nota
+  - Colocar mensagens de sucesso e erros
 
 
 

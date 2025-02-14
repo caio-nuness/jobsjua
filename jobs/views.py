@@ -12,7 +12,7 @@ def view_vacancies(request):
 
 
   # Instancia do paginator
-  vacancie_paginator = Paginator(vacancie, 9)
+  vacancie_paginator = Paginator(vacancie, 3)
 
   # Definindo pagina atual
   page_num = request.GET.get('page')

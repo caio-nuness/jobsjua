@@ -1,20 +1,16 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponse
-
-from django.contrib.auth import authenticate
-from django.contrib.auth import login as login_enterprise, logout as logout_platform
-from django.contrib.auth.decorators import login_required
-
+import requests
+from django.shortcuts import render, redirect 
+from django.http import HttpResponse 
+from django.contrib.auth import login as login_enterprise, authenticate, logout as logout_platform
+from django.contrib.auth.decorators import login_required 
 from secret.forms import VacancieForm
 from jobs.forms import EnterpriseForm, LoginForm
+from secret.forms import RecoveryPasswordForm
 from jobs.models import Enterprise, Vacancie
+from django.core.paginator import Paginator 
+from django.contrib.auth.hashers import make_password
 
-from django.core.paginator import Paginator
 
-from pprint import pprint
-import requests
-
-# REFERENTE A PARTE EXTERNA DA PLATAFORMA
 def login(request):
 
   if request.method == "GET":
@@ -121,10 +117,76 @@ def register(request):
           
       except:
         print("Ocorreu um erro na requisição")
-        return HttpResponse("Ocorreu um erro na Requisição")
-      
+        
+        return HttpResponse("Ocorreu  erro na Requisição")
+
+# REFERENTE A RECUPERAÇÃO DE SENHA
+def recovery_password(request):
+
+  if request.method == "GET":
+
+    form = RecoveryPasswordForm()
+    context = {"form": form}
+    return render(request, template_name="recovery_password.html", context=context)
+
+  else:
+
+    # captura de email informado
+    email = request.POST.get('email')
+
+    # validação de email informado
+    try:
+      empresa_registed = Enterprise.objects.get(email=email)
+
+      print(email)
+      print(empresa_registed)
+
+      return redirect('change_password')
+        
+    except:
+      return HttpResponse('Nenhuma empresa registrada com esse email, tente novamente!')
+
+# REFERENTE A RECUPERAÇÃO DE SENHA
+def change_password(request):
+
+  if request.method == "GET":
+
+    form = RecoveryPasswordForm()
+
+    context = {
+      "form": form,
+    }
+
+    return render(request, template_name="change_password.html",context=context)
+  
+  else:
+
+
+    email = request.POST.get('email')
+    password = request.POST.get('password')
+    password2 = request.POST.get('password2')
+
     
+
+    
+
+    if password == password2:
       
+      # criptografando senha
+      password = make_password(password) 
+      password2 = make_password(password)
+
+      print(f'Senha:{password} - confirm: {password2}')
+
+      enterprise_register = Enterprise.objects.get(email=email)
+
+      enterprise_register.password = password
+
+      enterprise_register.save()
+
+      return HttpResponse("Senha atualizada com sucesso!!")
+    else: 
+      return HttpResponse('As senhas não são iguais!!')
 
 # VER TODAS AS VAGAS
 @login_required(login_url='login')
@@ -135,7 +197,7 @@ def platform(request):
     # BUSCA A VAGA EM QUE A EMPRESA QUE CADASTROU == A EMPRESA QUE ESTÁ LOGADA
     company_vacancie = Vacancie.objects.filter(enterprise=enterprise_loggedin)
 
-    vacancie_paginator = Paginator(company_vacancie, 1)
+    vacancie_paginator = Paginator(company_vacancie, 3)
     page_num = request.GET.get('page')
 
     page = vacancie_paginator.get_page(page_num)
@@ -148,7 +210,6 @@ def platform(request):
 
     return render(request, template_name='platform.html', context=context)
 
-# VER DETALHES DE UMA VAGA
 @login_required(login_url='login')
 def secret_one_vacancie(request, id):
 
@@ -158,7 +219,6 @@ def secret_one_vacancie(request, id):
 
   return render(request, template_name="secret_one_vacancie.html", context=context)
 
-# CRIA UMA NOVA VAGA
 @login_required(login_url='login')
 def new_vacancie(request):
 
@@ -205,7 +265,6 @@ def new_vacancie(request):
 
     return redirect('platform')
 
-# EDITA UMA VAGA
 @login_required(login_url='login')
 def edit_vacancie(request, id):
 
@@ -243,16 +302,13 @@ def edit_vacancie(request, id):
 
     return  redirect(f'secret_one_vacancie', id=id)
 
-# DELETA UMA VAGA
 @login_required(login_url='login')
 def delete_vacancie(request, id):
   vacancie = Vacancie.objects.get(id=id)
   vacancie.delete()
   return redirect('platform')
 
-# FAZ O LOGOUT DA CONTA
 @login_required(login_url='login')
 def logout(request):
   logout_platform(request)
   return redirect("login")
-

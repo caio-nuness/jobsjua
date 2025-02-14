@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-+z-cqsz686h^4!6gn3&+-=6rd#$gjwyhv6boilvrdu^+p2jb&!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.1.7','localhost']
+ALLOWED_HOSTS = ['192.168.1.7','localhost','127.0.0.1']
 
 
 # Application definition
@@ -146,3 +146,12 @@ DJANGO_ICONS = {
     },
 }
 
+from django.core.mail.backends.smtp import EmailBackend
+
+# CONFIGURAÇÃO PARA ENVIO DE EMAIL - RECUPERAR SENHA - em produção mudar "console" para "smtp"
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = "caio.ayslan.nunes@gmail.com"
+EMAIL_HOST_PASSWORD = "Evanjelista1@"
