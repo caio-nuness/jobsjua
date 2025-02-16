@@ -1,12 +1,10 @@
-
 asgiref==3.8.1
-sqlparse==0.5.3
-Django==5.1.6
-django-icons==24.4
-
 certifi==2025.1.31
 charset-normalizer==3.4.1
 cnpj-py==0.1.0
+Django==5.1.6
+django-icons==24.4
 idna==3.10
 requests==2.32.3
+sqlparse==0.5.3
 urllib3==2.3.0

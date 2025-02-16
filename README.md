@@ -10,5 +10,6 @@
   - Colocar mensagens de sucesso e erros
 
 
-
+- incorporar imagem
+-- <img src="{% static 'img/error404.png' %}" alt=" miha imagem" srcset="">
   
