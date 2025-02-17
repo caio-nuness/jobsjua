@@ -8,9 +8,6 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
-    <link rel="stylesheet" href="{% static 'css/tailwind.css'%}">
-
-
     <!-- ========== TITULO DA ABA DO CHROME ========== -->
     <title>{% block title %}{% endblock %}</title>
   </head>
@@ -95,7 +92,11 @@
 
       <!-- ========== CONTEUDO PRINCIPAL ========== -->
       <main
-        class="py-5 rounded-lg border-solid border-2 border-black-100 container flex flex-wrap flex-col-reverse items-center w-[90%] h-auto md:flex-row md:w-[90vw] md:flex-wrap md:justify-center lg:flex-row lg:w-[70vw] lg:flex-wrap lg:justify-center"
+        class="
+        py-5 rounded-lg border-solid border-2 border-black-100 container flex flex-wrap justify-center items-center w-[90%] h-auto 
+        md:flex-row md:w-[90vw] 
+        lg:flex-row lg:w-[70vw]
+        "
       >
         {% block main %}{% endblock main %}
       </main>
@@ -116,6 +117,6 @@
       </footer>
     </div>
 
-   <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <script src="https://cdn.tailwindcss.com"></script>
   </body>
 </html>

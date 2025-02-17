@@ -8,7 +8,8 @@ from django.core.paginator import Paginator
 def view_vacancies(request):
 
   # Pegando todos os Objetos
-  vacancie = Vacancie.objects.all()
+  vacancie = Vacancie.objects.all().reverse()
+  print(vacancie)
 
 
   # Instancia do paginator
