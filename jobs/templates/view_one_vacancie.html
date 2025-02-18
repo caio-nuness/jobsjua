@@ -1,7 +1,18 @@
 {% extends "jobs/base.html" %}
+{% load static %}
 
 {% block title-page %} 
-  {{ vacancie|upper }} 
+
+<div class="
+px-8 flex justify-center flex-wrap
+md:w-[60vw]
+lg:w-[40vw]
+">
+<img class="mb-10" src="{%  static 'svg/one_vacancie.svg' %}" alt="" srcset="">
+{{ vacancie|upper }} 
+</div>
+
+   
 {% endblock title-page %}
 
 {% block main %}

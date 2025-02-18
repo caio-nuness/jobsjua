@@ -1,17 +1,16 @@
-# PROJETO - jobsjua - Ajustes
+# PROJETO - jobsjua - MODIFICAÇÕES A FAZER
 
 ## Template
-  - NA VISUALIZAÇÃO DO USER GERAL EM LG: NÃO ESTÁ MOSTRANDO O ULTIMO PRIMEIRO
-  - Criar pagina de sobre para os usuarios normais
+  - Desenvolver a pagina Home
+  - Criar pagina de Sobre para os usuarios normais
+  - Inserir a descrição das vagas com TextField Editável
+  - No cadastro de empresa inserir Senha de confirmação igual na recuperação "password2"
 
 ## View
-  - criar estrategia para recuperação de senha -
-  - terminar a view para cadastrar uma nova senha que nem a de atualizar nota
   - Colocar mensagens de sucesso e erros
+  - Alterar os HttpResponse que estão nas paginas
+  
 
 
-- incorporar imagem
--- <img src="{% static 'img/error404.png' %}" alt=" miha imagem" srcset="">
 
-teste
 

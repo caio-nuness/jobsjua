@@ -133,60 +133,44 @@ def recovery_password(request):
 
     # captura de email informado
     email = request.POST.get('email')
-
+    password = request.POST.get('password')
+    password2 = request.POST.get('password2')
+    
+    print(email, password, password2)
     # validação de email informado
     try:
-      empresa_registed = Enterprise.objects.get(email=email)
+      enterprise_register = Enterprise.objects.get(email=email)
+      print(enterprise_register)
+      
+    
+      if password == password2:
+        
+          # criptografando senha
+          password = make_password(password) 
+          password2 = make_password(password)
 
-      print(email)
-      print(empresa_registed)
+          print(f'Senha:{password} - confirm: {password2}')
+
+          enterprise_register.password = password
+
+          enterprise_register.save()
+
+          return HttpResponse("Senha atualizada com sucesso!!")
+      else: 
+          
+          return HttpResponse('As senhas não são iguais!!')
+
+      
 
       return redirect('change_password')
         
     except:
       return HttpResponse('Nenhuma empresa registrada com esse email, tente novamente!')
-
-# REFERENTE A RECUPERAÇÃO DE SENHA
-def change_password(request):
-
-  if request.method == "GET":
-
-    form = RecoveryPasswordForm()
-
-    context = {
-      "form": form,
-    }
-
-    return render(request, template_name="change_password.html",context=context)
-  
-  else:
-
-
-    email = request.POST.get('email')
-    password = request.POST.get('password')
-    password2 = request.POST.get('password2')
-
     
 
     
 
-    if password == password2:
-      
-      # criptografando senha
-      password = make_password(password) 
-      password2 = make_password(password)
-
-      print(f'Senha:{password} - confirm: {password2}')
-
-      enterprise_register = Enterprise.objects.get(email=email)
-
-      enterprise_register.password = password
-
-      enterprise_register.save()
-
-      return HttpResponse("Senha atualizada com sucesso!!")
-    else: 
-      return HttpResponse('As senhas não são iguais!!')
+    
 
 # VER TODAS AS VAGAS
 @login_required(login_url='login')

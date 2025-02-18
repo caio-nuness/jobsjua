@@ -13,5 +13,4 @@ urlpatterns = [
 
     # URLS REFERENTE A RECUPERAÇÂO DE SENHAS
     path('recovery_password/', views.recovery_password, name="recovery_password"),
-    path('change_password/', views.change_password, name="change_password"),
 ]

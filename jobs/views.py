@@ -4,13 +4,14 @@ from .models import Vacancie
 
 from django.core.paginator import Paginator
 
+def home(request):
+  return render(request, template_name="home.html" )
+
 # VER TODAS AS VAGAS 
 def view_vacancies(request):
 
-  # Pegando todos os Objetos
-  vacancie = Vacancie.objects.all().reverse()
-  print(vacancie)
-
+  # Pegando todos os Objetos - Ordenados pelo "id maior na frente"
+  vacancie = Vacancie.objects.all().order_by("-id")
 
   # Instancia do paginator
   vacancie_paginator = Paginator(vacancie, 9)
