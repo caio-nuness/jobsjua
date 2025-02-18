@@ -42,12 +42,6 @@ def login(request):
       return HttpResponse('nao existe na base de dados "email"')
 
 def register(request):
-  
-  """
-    ESSA FUNÇÃO REGISTRA UM USUARIO APENAS SE
-    - O CNPJ INFORMADO EXISTIR
-    - O CNPJ INFORMADO NÃO EXISTA NA BASE DE DADOS 
-  """
    
   if request.method == "GET":
 
@@ -120,7 +114,6 @@ def register(request):
         
         return HttpResponse("Ocorreu  erro na Requisição")
 
-# REFERENTE A RECUPERAÇÃO DE SENHA
 def recovery_password(request):
 
   if request.method == "GET":
@@ -131,48 +124,35 @@ def recovery_password(request):
 
   else:
 
-    # captura de email informado
+    # captura de dados informados
     email = request.POST.get('email')
     password = request.POST.get('password')
     password2 = request.POST.get('password2')
     
-    print(email, password, password2)
-    # validação de email informado
     try:
-      enterprise_register = Enterprise.objects.get(email=email)
-      print(enterprise_register)
       
-    
+      enterprise_register = Enterprise.objects.get(email=email)
+      
       if password == password2:
         
           # criptografando senha
           password = make_password(password) 
           password2 = make_password(password)
 
-          print(f'Senha:{password} - confirm: {password2}')
-
           enterprise_register.password = password
 
           enterprise_register.save()
 
           return HttpResponse("Senha atualizada com sucesso!!")
+        
       else: 
-          
           return HttpResponse('As senhas não são iguais!!')
 
-      
-
-      return redirect('change_password')
+      return redirect('login')
         
     except:
       return HttpResponse('Nenhuma empresa registrada com esse email, tente novamente!')
     
-
-    
-
-    
-
-# VER TODAS AS VAGAS
 @login_required(login_url='login')
 def platform(request): 
 
