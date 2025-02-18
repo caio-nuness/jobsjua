@@ -1,8 +1,9 @@
 {% extends "jobs/base.html" %}
 {% load static %}
 
-{% block title-page %} 
+{% block title %}..::: JobsJua | Dados da vaga :::.. {% endblock title %}
 
+{% block title-page %} 
 <div class="
 px-8 flex justify-center flex-col items-center
 md:w-[60vw]
@@ -11,8 +12,6 @@ lg:w-[40vw]
 <img class="mb-10" src="{%  static 'svg/one_vacancie.svg' %}" alt="" srcset="">
 {{ vacancie|upper }} 
 </div>
-
-   
 {% endblock title-page %}
 
 {% block main %}

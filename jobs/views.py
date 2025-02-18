@@ -37,3 +37,6 @@ def view_one_vacancie(request, id):
   context = {'vacancie': vacancie}
 
   return render(request, template_name='view_one_vacancie.html', context=context)
+
+def about(request):
+  return render(request, template_name="about.html" )
