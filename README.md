@@ -1,9 +1,8 @@
 # PROJETO - jobsjua - MODIFICAÇÕES A FAZER
 
 ## Template
-  - Criar pagina de Sobre para os usuarios normais
-  - Inserir a descrição das vagas com TextField Editável
-  - No cadastro de empresa inserir Senha de confirmação igual na recuperação "password2"
+  - Adicionar navbar na pagina logada
+ 
 
 ## View
   - Colocar mensagens de sucesso e erros
