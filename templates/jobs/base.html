@@ -22,7 +22,6 @@
   <body class="box-border border-blue-100">
     <div class="flex flex-col items-center w-[100%] h-auto">
 
-
       <!-- ========== CABEÇALHO PARA EMPRESA AUTENTICADA ========== -->
       {% if user.is_authenticated == True %}
       <nav class=" w-full h-[8vh] relative flex flex-wrap items-center justify-between px-0
@@ -216,15 +215,21 @@
       {% endif %}
 
 
-
       <!-- ========== TITULO DAS PAGINAS ========== -->
-      <div class="font-bold text-xl my-10 text-[#344E41]">
-        {% block title-page %} {% endblock title-page %}
+      <div class="my-10 px-8 text-lg font-semibold text-green-base flex justify-center flex-col items-center
+       
+      md:w-[60vw]
+      lg:w-[40vw]
+      ">  
+
+        {% block title-page %}
+        {% endblock title-page %}
+
       </div>
 
       <!-- ========== CONTEUDO PRINCIPAL ========== -->
       <main
-        class="py-5 rounded-lg border-solid border-2 border-black-100 container flex flex-wrap justify-center items-center w-[90%] h-auto mb-8 md:flex-row md:w-[90vw] lg:flex-row lg:w-[70vw]"
+        class="py-5 rounded-md border-solid border border-black-200 container flex flex-wrap justify-center items-center w-[90%] h-auto mb-8 md:flex-row md:w-[90vw] lg:flex-row lg:w-[70vw]"
       >
         {% block main %}{% endblock main %}
       </main>
