@@ -4,10 +4,7 @@
 {% block title %}..::: JobsJua | Página inicial  :::.. {% endblock title %}
 
 {% block title-page %} 
-
-
     <h1>SEJA BEM VINDO!</h1> 
-
 {% endblock title-page %}
 
 {% block main %}
@@ -17,8 +14,8 @@
         Encontre as melhores oportunidades em Juazeiro-BA, sem sair de casa! 
         JobsJua: o caminho mais rápido para o seu próximo emprego!
     </h2>
-    <a href="{% url 'register' %}" class="flex w-[70%] justify-center rounded-md bg-[#588157] hover:bg-[#3A5A40] duration-300 mt-8 py-3 text-sm/6 font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"> Cadastrar empresa</a>
+    <a href="{% url 'register' %}" class="flex w-[60%] justify-center rounded-md bg-green-dark hover:bg-green-hover text-smoke-light duration-300 mt-8 py-3 text-sm/6 font-semibold">CADASTRAR EMPRESA</a>
     <h2 class=" text-center mt-4 text-lg">ou</h2>
-    <a href="{% url 'view_vacancies' %}" class="flex w-[90%] justify-center rounded-md bg-[#588157] hover:bg-[#3A5A40] duration-300 my-4 py-3 text-sm/6 font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Acessar vagas</a>
+    <a href="{% url 'view_vacancies' %}" class="flex w-[50%] justify-center rounded-md bg-green-dark hover:bg-green-hover text-smoke-light duration-300 mt-4 py-3 text-sm/6 font-semibold">ACESSAR VAGAS</a>
 </div>
 {% endblock main %}
