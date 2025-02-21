@@ -1,7 +1,8 @@
-{% load static icons %}
+{% load static icons tailwind_tags %}
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
@@ -9,6 +10,7 @@
       href="{% static 'img/favicon.png' %}"
       type="image/x-icon"
     />
+    {% tailwind_css %}
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -19,52 +21,29 @@
 
   <body class="box-border border-blue-100">
     <div class="flex flex-col items-center w-[100vw] h-auto">
+
+
       <!-- ========== CABEÇALHO PARA EMPRESA AUTENTICADA ========== -->
       {% if user.is_authenticated == True %}
       
-      <header class="flex w-[90vw] items-center justify-around h-[10vh] py-2">
-        <div class="flex w-[70vw] h-[100%] justify-start items-center">
-          <a
-            href="{% url 'platform' %}"
-            class="w-auto ml-4 h-10 px-4 bg-[#588157] hover:bg-[#3A5A40] duration-300 text-slate-100 rounded flex items-center justify-center"
-          >
-            Ver vagas
-          </a>
-
-          <a
-            href="{% url 'new_vacancie' %}"
-            class="w-auto ml-2 h-10 px-4 bg-[#588157] hover:bg-[#3A5A40] duration-300 text-slate-100 rounded flex items-center justify-center"
-          >
-            Nova vaga
-          </a>
-        </div>
-
-        <div
-          class="w-[30vw] h-[100%] flex items-center justify-center md:justify-end"
-        >
-          <a
-            href="{% url 'logout' %}"
-            class="w-20 h-10 bg-[#941b0c] hover:bg-[#ad0005] duration-300 text-slate-100 rounded flex items-center justify-center md:mr-4"
-          >
-            {% icon 'logout' %}
-          </a>
-        </div>
-      </header>
-
       {% else %}
+      <!-- ========== CABEÇALHO PARA EMPRESA NÃO AUTENTICADA ========== -->
+      <nav class=" bg-teste-3 w-full h-[10vh] relative flex flex-wrap items-center justify-between px-2
+          md:flex-nowrap md:justify-between md:items-center
+      ">
+          <!-- ========== DIV DA LOGO MARCA ========== -->
+          <div class="w-[40vw]  bg-teste-5   h-full flex justify-start items-center 
+             md:w-[20%]
+          ">
+            JOBSJUA
+          </div>
 
-      <nav class="w-full">
-        <div
-          class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2 md:h-[10vh]"
-        >
-          <div><h1 class="font-medium text-[#698867]">JOBSJUA</h1></div>
-
-          <!-- Button Hamburger -->
+          <!-- ========== BOTÃO TIPO HAMBURGER ========== -->
           <button
             data-collapse-toggle="navbar-default"
             id="hamburger"
             type="button"
-            class="inline-flex items-center p-2 w-15 h-15 justify-center text-sm text-gray-500 rounded-lg focus:ring-2 focus:ring-gray-200 md:hidden"
+            class="inline-flex items-center p-2 w-15 h-15 justify-center duration-300 text-sm text-smoke-dark rounded-md focus:ring-2 focus:ring-smoke-dark md:hidden"
             onclick="openNavBar()"
             aria-controls="navbar-default"
             aria-expanded="false"
@@ -87,61 +66,70 @@
           </button>
 
           <!-- Parte interna do Hamburger -->
-          <div
-            class="hidden w-full md:block md:w-[60%] md:h-[100%] md:flex md:justify-center md:items-center lg:w-[50%] lg:justify-end"
-            id="navbar-default"
-          >
+          <div id="navbar-default"
+            class=" hidden w-full bg-teste-2 
+              md:w-[60%]  md:h-full md:flex  md:p-2
+              lg:w-[40%] 
+              xl:w-[30%]
+            ">
+
             <ul
-              class="font-medium flex flex-col p-4 mt-4 border border-gray-100 rounded-lg md:space-x-8 rtl:space-x-reverse dark:bg-[#3A5A40] dark:border-gray-700 md:w-full md:h-full md:rounded md:px-4 md:flex-row md:justify-around md:items-center md:mt-0 md:border-0 md:dark:bg-white lg:w-[80%]"
-            >
-              <li
-                class="md:bg-[#588157] md:hover:bg-[#698867] md:w-[20%] md:p-1 md:rounded-sm md:flex md:justify-center md:items-center lg:bg-[#588157] lg:hover:bg-[#698867]"
-              >
-                <a
-                  href="{% url 'home' %}"
-                  class="block py-2 mb-1 px-3 text-white bg-[#588157] hover:bg-[#698867] rounded-sm dark:text-white flex justify-start items-center md:mb-0 md:bg-transparent md:dark:text-white-500 md:p-0 md:hover:bg-transparent md:px-0 lg:mb-0 lg:bg-transparent lg:hover:bg-transparent"
-                  >Início
-                  <h1 class="ml-2">{% icon 'home' %}</h1>
+              class="flex flex-col p-8 mb-4 rounded-md     
+              md:w-full md:h-full md:rounded-none md:px-0 md:p-0 md:flex-row md:justify-between md:items-center md:bg-teste-4
+              ">
+
+              <li class="bg-blue-light font-normal
+                  md:h-[100%] md:w-full md:hover:bg-green-base  md:rounded-sm md:flex md:justify-center md:items-center">
+
+                <a href="{% url 'home' %}"
+                  class="duration-300 mb-1 p-4 text-smoke-light font-normal bg-green-dark hover:bg-green-hover rounded-sm flex justify-start items-center  
+                  md:w-auto md:h-[80%] md:px-3  md:mb-0  md:flex md:justify-center md:items-center md:rounded-md">  
+                  {% icon 'home' %}
+                  <h1 class="mx-2">Início</h1>
                 </a>
               </li>
 
-              <li
-                class="md:bg-[#588157] md:hover:bg-[#698867] md:w-[20%] md:p-1 md:rounded-sm md:flex md:justify-center md:items-center lg:bg-[#588157] lg:hover:bg-[#698867]"
-              >
-                <a
-                  href="{% url 'view_vacancies' %}"
-                  class="block py-2 mb-1 px-3 text-white bg-[#588157] hover:bg-[#698867] rounded-sm dark:text-white flex justify-start items-center md:mb-0 md:bg-transparent md:dark:text-white-500 md:p-0 md:hover:bg-transparent md:px-0 lg:mb-0 lg:bg-transparent lg:hover:bg-transparent"
-                  >Vagas
+              <li class="bg-blue-light font-normal
+                md:h-[100%] md:w-full md:hover:bg-green-base  md:rounded-sm md:flex md:justify-center md:items-center">
+
+                <a href="{% url 'view_vacancies' %}"
+                  class="duration-300 mb-1 p-4 text-smoke-light font-normal bg-green-dark hover:bg-green-hover rounded-sm flex justify-start items-center  
+                  md:w-auto md:h-[80%] md:px-3  md:mb-0  md:flex md:justify-center md:items-center md:rounded-md">  
+                  {% icon 'eye' %}
+                  <h1 class="mx-2">Vagas</h1>
                 </a>
               </li>
 
-              <li
-                class="md:bg-[#588157] md:hover:bg-[#698867] md:w-[20%] md:p-1 md:rounded-sm md:flex md:justify-center md:items-center lg:bg-[#588157] lg:hover:bg-[#698867]"
-              >
-                <a
-                  href="{% url 'about' %}"
-                  class="block py-2 mb-1 px-3 text-white bg-[#588157] hover:bg-[#698867] rounded-sm dark:text-white flex justify-start items-center md:mb-0 md:bg-transparent md:dark:text-white-500 md:p-0 md:hover:bg-transparent md:px-0 lg:mb-0 lg:bg-transparent lg:hover:bg-transparent"
-                  >Sobre
+              <li class="bg-blue-light font-normal
+                md:h-[100%] md:w-full md:hover:bg-green-base  md:rounded-sm md:flex md:justify-center md:items-center">
+
+                <a href="{% url 'about' %}"
+                  class="duration-300 mb-1 p-4 text-smoke-light font-normal bg-green-dark hover:bg-green-hover rounded-sm flex justify-start items-center  
+                  md:w-auto md:h-[80%] md:px-3  md:mb-0  md:flex md:justify-center md:items-center md:rounded-md">  
+                  {% icon 'eye' %}
+                  <h1 class="mx-2">Sobre</h1>
                 </a>
               </li>
 
-              <li
-                class="md:bg-[#588157] md:hover:bg-[#698867] md:w-[20%] md:p-1 md:rounded-sm md:flex md:justify-center md:items-center lg:bg-[#588157] lg:hover:bg-[#698867]"
-              >
-                <a
-                  href="{% url 'login' %}"
-                  class="block py-2 mb-1 px-3 text-white bg-[#588157] hover:bg-[#698867] rounded-sm dark:text-white flex justify-start items-center md:mb-0 md:bg-transparent md:dark:text-white-500 md:p-0 md:hover:bg-transparent md:px-0 lg:mb-0 lg:bg-transparent lg:hover:bg-transparent"
-                  >Entrar
-                  <h1 class="ml-2">{% icon 'login' %}</h1>
+              <li class="bg-blue-light font-normal
+                md:h-[100%] md:w-full md:hover:bg-green-base  md:rounded-sm md:flex md:justify-center md:items-center">
+
+                <a href="{% url 'login' %}"
+                  class="duration-300 mb-1 p-4 text-smoke-light font-normal bg-green-dark hover:bg-green-hover rounded-sm flex justify-start items-center  
+                  md:w-auto md:h-[80%] md:px-3  md:mb-0  md:flex md:justify-center md:items-center md:rounded-md">  
+                  {% icon 'login' %}
+                  <h1 class="mx-2">Entrar</h1>
                 </a>
               </li>
+
+             
+              
             </ul>
           </div>
-        </div>
       </nav>
-
-      <!-- ========== CABEÇALHO PARA EMPRESA NÃO AUTENTICADA ========== -->
       {% endif %}
+
+
 
       <!-- ========== TITULO DAS PAGINAS ========== -->
       <div class="font-bold text-xl my-10 text-[#344E41]">
@@ -169,7 +157,7 @@
       </footer>
     </div>
 
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
     <script src="{% static 'hamburger.js' %}"></script>
   </body>
 </html>

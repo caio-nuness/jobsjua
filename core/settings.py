@@ -26,20 +26,35 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_icons',
     'secret',
     'jobs',
-   
+    
+    # Apps Externos 
+    'django_icons',
+    'tailwind',
+    'theme',
+    'django_browser_reload'
 ]
+
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    
+   
+    
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+     # MIDDLAWARE EXTERNO TAILWINDCSS
+    "django_browser_reload.middleware.BrowserReloadMiddleware",
+
+    
+    
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -130,9 +145,13 @@ DJANGO_ICONS = {
         "happy": {"name": "fa-regular fa-face-smile-beam"},
         "arow_right": {"name": "fa-solid fa-right-long"},
         "arow_left": {"name": "fa-solid fa-left-long"},
-       
+        "plus": {"name": "fa-solid fa-plus"},
+        "eye": {"name": "fa-solid fa-eye"},
     },
 }
 
 
+# CONFIGURAÇÃO TAILWINDCSS
+TAILWIND_APP_NAME = 'theme'
 
+INTERNAL_IPS = ["127.0.0.1",]
