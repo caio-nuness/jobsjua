@@ -16,3 +16,5 @@
   - rodar em terminais diferentes os dois ao mesmo tempo
 
 -modificar navbar para o usuario logado
+
+-fazer a pagina de login

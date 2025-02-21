@@ -4,33 +4,27 @@
 {% block title %}..::: JobsJua | Nossas vagas :::.. {% endblock title %}
 
 {% block title-page %}
-<div class="
-px-8 flex justify-center flex-col items-center
-md:w-[60vw]
-lg:w-[40vw]
-">
+
 <img class="mb-10 w-[60%]" src="{%  static 'svg/search.svg' %}" alt="" srcset="">
-VEJA NOSSAS VAGAS 
-</div>
+<h1>VEJA NOSSAS VAGAS</h1> 
+
 {% endblock title-page %}
 
 {% block main %}
   {% for item in page.object_list %}
     <a href="{% url 'view_one_vacancie' id=item.id %}" class="w-[95%] 
-      h-auto bg-[#A3B18A]  hover:bg-[#588157] duration-300  p-4 rounded-md my-2
-      md:ml-4 md:w-[25%]
-       lg:ml-4 lg:w-[25%]
+      h-auto bg-green-light  hover:bg-green-lightHover duration-300  p-4 rounded-md my-2
+        md:m-1 md:w-[30%]
+        lg lg:w-[25%]
     ">
       <strong class="text-[12px] text-black-900" >{{ item.create_at }}</strong> <br>
       <br>
      
-      <strong>Titulo: </strong>{{ item.title }}<br>
-      <strong>Empresa: </strong> {{ item.enterprise }} <br>
-      <strong>Salário: </strong> {{ item.wage }}  <br>
-      <strong>Modalidade: </strong> {{ item.modality }} <br>
-      <strong>Jornada: </strong> {{ item.weekly_journey }} <br>
+      <strong>Titulo: </strong>{{ item.title|truncatechars:10  }}<br>
+      <strong>Empresa: </strong> {{ item.enterprise|truncatechars:10 }} <br>
+      <strong>Salário: </strong> {{ item.wage|truncatechars:10 }}  <br>
+      <strong>Jornada: </strong> {{ item.weekly_journey|truncatechars:10 }} <br>
     </a>
-
     {% endfor %}
     
     <div class="
