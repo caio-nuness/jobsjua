@@ -47,7 +47,7 @@ class VacancieForm(UserCreationForm):
     required=True,
     widget=forms.EmailInput(
       attrs={
-        'class': 'block w-full rounded-sm bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-[#588157] sm:text-sm/6',
+        'class': 'block w-full rounded-sm  p-2 py-1.5 text-base text-main-greenBase outline outline-1 -outline-offset-1 outline-main-greenLight placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-main-greenLightHover sm:text-sm/6',
         'placeholder': 'Informe seu melhor email'
       }
     )
@@ -139,7 +139,7 @@ class RecoveryPasswordForm(UserCreationForm):
     required=True,
     widget=forms.EmailInput(
       attrs={
-        'class': 'block w-full rounded-sm bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-[#588157] sm:text-sm/6',
+        'class': 'block w-full rounded-sm  p-2 text-base text-main-greenDark outline outline-1 -outline-offset-1 outline-main-greenLight placeholder:text-main-smokeDark focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-main-greenLightHover sm:text-sm/6',
         'placeholder': 'Informe o email da sua conta...'
       }
     )
@@ -149,7 +149,7 @@ class RecoveryPasswordForm(UserCreationForm):
 
     widget=forms.PasswordInput(
       attrs={
-        'class': 'block w-full rounded-sm bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-[#588157] sm:text-sm/6',
+        'class': 'block w-full rounded-sm  p-2 text-base text-main-greenDark outline outline-1 -outline-offset-1 outline-main-greenLight placeholder:text-main-smokeDark focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-main-greenLightHover sm:text-sm/6',
         'placeholder': 'Informe uma senha...'
       }
     )
@@ -159,7 +159,7 @@ class RecoveryPasswordForm(UserCreationForm):
 
     widget=forms.PasswordInput(
       attrs={
-        'class': 'block w-full rounded-sm bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-[#588157] sm:text-sm/6',
+        'class': 'block w-full rounded-sm  p-2 text-base text-main-greenDark outline outline-1 -outline-offset-1 outline-main-greenLight placeholder:text-main-smokeDark focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-main-greenLightHover sm:text-sm/6',
         'placeholder': 'Confirme sua nova senha...'
       }
     )

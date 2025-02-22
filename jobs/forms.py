@@ -103,7 +103,7 @@ class LoginForm(forms.ModelForm):
     required=True,
       widget=forms.TextInput(
         attrs={
-          'class': 'block w-full rounded-sm bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-[#588157] sm:text-sm/6',
+          'class': ' block w-full p-2 rounded-sm  text-myGreen-800 outline outline-1 -outline-offset-1 outline-myGreen-300 placeholder:text-myWhite-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-myGreen-400 duration-300 text-sm/6',
           'placeholder': 'Informe o email cadastrado...'
         }
     )
@@ -112,8 +112,8 @@ class LoginForm(forms.ModelForm):
   password = forms.CharField(
     widget=forms.PasswordInput(
       attrs={
-        'class': 'block w-full rounded-sm bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-[#588157] sm:text-sm/6',
-        'placeholder': 'Informe a sua senha...'
+          'class': 'block w-full p-2 rounded-sm  text-myGreen-800 outline outline-1 -outline-offset-1 outline-myGreen-300 placeholder:text-myWhite-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-myGreen-400 duration-300 text-sm/6',
+          'placeholder': 'Informe a sua senha...'
       }
     )
   )

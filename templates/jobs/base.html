@@ -19,7 +19,7 @@
     <title>{% block title %}{% endblock %}</title>
   </head>
 
-  <body class="box-border border-blue-100">
+  <body class="box-border ">
     <div class="flex flex-col items-center w-[100%] h-auto">
 
       <!-- ========== CABEÇALHO PARA EMPRESA AUTENTICADA ========== -->
@@ -39,7 +39,7 @@
             data-collapse-toggle="navbar-default"
             id="hamburger"
             type="button"
-            class="inline-flex text-smoke-dark items-center p-4 w-15 h-15 justify-center duration-300 text-sm md:hidden"
+            class="inline-flex text-myWhite-300 items-center p-4 w-15 h-15 justify-center duration-300 text-sm md:hidden"
             onclick="openNavBar()"
             aria-controls="navbar-default"
             aria-expanded="false"
@@ -63,7 +63,7 @@
 
           <!-- Parte interna do Hamburger -->
           <div id="navbar-default"
-            class=" hidden w-full bg-green-base h-[100vh] 
+            class=" hidden w-full bg-myGreen-500 h-[100vh] 
               md:w-full  md:h-full md:flex  md:justify-end md:mx-2  md:bg-opacity-0
               
               
@@ -80,7 +80,7 @@
                   md:h-[100%] md:w-auto md:px-2  md:flex md:justify-center md:items-center ">
 
                 <a href="{% url 'new_vacancie' %}"
-                  class="duration-300 mb-1 p-4 text-smoke-light font-normal bg-green-dark hover:bg-green-hover rounded-md flex justify-start items-center  
+                  class="duration-300 mb-1 p-4 text-myWhite-50 font-normal bg-myGreen-700 hover:bg-myGreen-800 rounded-md flex justify-start items-center  
                   md:w-[100%] md:h-[80%] md:px-3  md:mb-0  md:flex md:justify-center md:items-center md:rounded-md">  
                   {% icon 'plus' %}
                   <h1 class="mx-2">Criar vaga</h1>
@@ -91,7 +91,7 @@
                   md:h-[100%] md:w-auto md:px-2  md:flex md:justify-center md:items-center ">
 
                 <a href="{% url 'platform' %}"
-                  class="duration-300 mb-1 p-4 text-smoke-light font-normal bg-green-dark hover:bg-green-hover rounded-md flex justify-start items-center  
+                  class="duration-300 mb-1 p-4 text-myWhite-50 font-normal bg-myGreen-700 hover:bg-myGreen-800 rounded-md flex justify-start items-center  
                   md:w-[100%] md:h-[80%] md:px-3  md:mb-0  md:flex md:justify-center md:items-center md:rounded-md">  
                   {% icon 'eye' %}
                   <h1 class="mx-2">Minhas vagas</h1>
@@ -102,21 +102,20 @@
                   md:h-[100%] md:w-auto md:px-2  md:flex md:justify-center md:items-center ">
 
                 <a href="{% url 'logout' %}"
-                  class="duration-300 mb-1 p-4 text-smoke-light font-normal bg-red-base hover:bg-red-dark rounded-md flex justify-start items-center  
+                  class="duration-300 mb-1 p-4 text-myWhite-50 font-normal bg-myRed-700 hover:bg-myRed-800 rounded-md flex justify-start items-center  
                   md:w-[100%] md:h-[80%] md:px-3  md:mb-0  md:flex md:justify-center md:items-center md:rounded-md">  
                   {% icon 'logout' %}
                   <h1 class="mx-2">Sair</h1>
                 </a>
               </li>
-
-              
             </ul>
+            
           </div>
       </nav>
-      {% else %}
-
+      
       <!-- ========== CABEÇALHO PARA EMPRESA NÃO AUTENTICADA ========== -->
-      <nav class="  w-full h-[8vh] relative flex flex-wrap items-center justify-between px-0
+      {% else %}
+      <nav class="  w-full h-[8vh] relative flex flex-wrap items-center justify-between 
           md:flex-nowrap md:justify-between md:items-center
       ">
           <!-- ========== DIV DA LOGO MARCA ========== -->
@@ -131,7 +130,7 @@
             data-collapse-toggle="navbar-default"
             id="hamburger"
             type="button"
-            class="inline-flex text-smoke-dark items-center p-4 w-15 h-15 justify-center duration-300 text-sm md:hidden"
+            class="inline-flex text-myWhite-300 items-center p-4 w-15 h-15 justify-center duration-300 text-sm md:hidden"
             onclick="openNavBar()"
             aria-controls="navbar-default"
             aria-expanded="false"
@@ -155,7 +154,7 @@
 
           <!-- Parte interna do Hamburger -->
           <div id="navbar-default"
-            class=" hidden w-full bg-green-base h-[100vh] 
+            class=" hidden w-full bg-myGreen-500 h-[100vh] 
               md:w-[55%]  md:h-full md:flex  md:mr-4 md:bg-opacity-0
               lg:w-[45%] lg:mr-4
               xl:w-[30%] xl:mr-4
@@ -170,7 +169,7 @@
                   md:h-[100%] md:w-full  md:flex md:justify-center md:items-center">
 
                 <a href="{% url 'home' %}"
-                  class="duration-300 mb-1 p-4 text-smoke-light font-normal bg-green-dark hover:bg-green-hover rounded-md flex justify-start items-center  
+                  class="duration-300 mb-1 p-4 text-myWhite-50 font-normal bg-myGreen-700 hover:bg-myGreen-800 rounded-md flex justify-start items-center  
                   md:w-auto md:h-[80%] md:px-3  md:mb-0  md:flex md:justify-center md:items-center md:rounded-md">  
                   {% icon 'home' %}
                   <h1 class="mx-2">Início</h1>
@@ -181,7 +180,7 @@
                 md:h-[100%] md:w-full md:flex md:justify-center md:items-center">
 
                 <a href="{% url 'view_vacancies' %}"
-                  class="duration-300 mb-1 p-4 text-smoke-light font-normal bg-green-dark hover:bg-green-hover rounded-md flex justify-start items-center  
+                  class="duration-300 mb-1 p-4 text-myWhite-50 font-normal bg-myGreen-700 hover:bg-myGreen-800 rounded-md flex justify-start items-center  
                   md:w-auto md:h-[80%] md:px-3  md:mb-0  md:flex md:justify-center md:items-center md:rounded-md">  
                   {% icon 'eye' %}
                   <h1 class="mx-2">Vagas</h1>
@@ -192,7 +191,7 @@
                 md:h-[100%] md:w-full    md:flex md:justify-center md:items-center">
 
                 <a href="{% url 'about' %}"
-                  class="duration-300 mb-1 p-4 text-smoke-light font-normal bg-green-dark hover:bg-green-hover rounded-md flex justify-start items-center  
+                  class="duration-300 mb-1 p-4 text-myWhite-50 font-normal bg-myGreen-700 hover:bg-myGreen-800 rounded-md flex justify-start items-center  
                   md:w-auto md:h-[80%] md:px-3  md:mb-0  md:flex md:justify-center md:items-center md:rounded-md">  
                   {% icon 'eye' %}
                   <h1 class="mx-2">Sobre</h1>
@@ -203,7 +202,7 @@
                 md:h-[100%] md:w-full   md:flex md:justify-center md:items-center">
 
                 <a href="{% url 'login' %}"
-                  class="duration-300  p-4 text-smoke-light font-normal bg-blue-base hover:bg-blue-dark rounded-md flex justify-start items-center  
+                  class="p-4 text-myWhite-50 font-normal bg-myBlue-700 hover:bg-myBlue-800 rounded-md flex justify-start items-center duration-300  
                   md:w-auto md:h-[80%] md:px-3  md:mb-0  md:flex md:justify-center md:items-center md:rounded-md">  
                   {% icon 'login' %}
                   <h1 class="mx-2">Entrar</h1>
@@ -216,7 +215,7 @@
 
 
       <!-- ========== TITULO DAS PAGINAS ========== -->
-      <div class="my-10 px-8 text-2xl font-semibold text-green-base flex justify-center flex-col items-center
+      <div class="my-10 px-8 text-2xl font-semibold text-myGreen-500 flex justify-center flex-col items-center
        
       md:w-[60vw]
       lg:w-[40vw]
@@ -226,8 +225,7 @@
       </div>
 
       <!-- ========== CONTEUDO PRINCIPAL ========== -->
-      <main
-        class="py-5 rounded-md border-solid border border-black-300 container flex flex-wrap justify-center items-center w-[90%] h-auto mb-8 md:flex-row md:w-[90vw] lg:flex-row lg:w-[70vw]"
+      <main class="py-5 rounded-md border-solid border border-myWhite-300 container flex flex-wrap justify-center items-center w-[90%] h-auto mb-8 md:flex-row md:w-[90vw] lg:flex-row lg:w-[70vw]"
       >
         {% block main %}{% endblock main %}
       </main>
@@ -238,7 +236,7 @@
         <div>
           © Todos os direitos reservados |
           <a
-            class="text-[#588157] font-bold italic"
+            class="text-myGreen-500 font-bold italic underline"
             href="mailto:caio.ayslan.nunes@gmail.com"
             >Caio Cavalcante</a
           >
@@ -246,7 +244,6 @@
       </footer>
     </div>
 
-    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
     <script src="{% static 'hamburger.js' %}"></script>
   </body>
 </html>
