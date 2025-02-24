@@ -21,6 +21,7 @@ ALLOWED_HOSTS = ['192.168.1.7','localhost']
 
 INSTALLED_APPS = [
     'jazzmin',
+    'rolepermissions',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -126,6 +127,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [ BASE_DIR / 'static']
 
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
@@ -155,3 +157,7 @@ DJANGO_ICONS = {
 TAILWIND_APP_NAME = 'theme'
 
 INTERNAL_IPS = ["127.0.0.1",]
+
+#CONFIGURAÇÕES ROLES PERMISSIONS
+
+ROLEPERMISSIONS_MODULE = "core.roles"

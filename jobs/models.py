@@ -85,8 +85,6 @@ class Vacancie(models.Model):
 
   class Meta:
     verbose_name_plural = 'Vagas'
-
-
-
+    
   def __str__(self):
     return self.title

@@ -5,6 +5,7 @@
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
     <link
       rel="shortcut icon"
       href="{% static 'img/favicon.png' %}"
@@ -16,6 +17,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
     <!-- ========== TITULO DA ABA DO CHROME ========== -->
+  
     <title>{% block title %}{% endblock %}</title>
   </head>
 
@@ -31,7 +33,7 @@
           <div class="w-[40vw]   px-4 h-full flex justify-start items-center 
              md:w-[20%] 
           ">
-            JOBSJUA
+            <img src="{% static 'svg/logo.svg' %}" alt="logo">
           </div>
 
           <!-- ========== BOTÃO TIPO HAMBURGER ========== -->
@@ -68,12 +70,12 @@
               
               
             ">
-
+            
             <ul
               class="flex flex-col p-8 mb-4 rounded-md     
               md:w-[68%] md:h-full md:rounded-none md:px-0 md:p-0 md:mb-0 md:flex-row md:justify-between md:items-center 
               lg:w-[51%]
-              xl:w-[35%]
+              xl:w-[41%]
               ">
 
               <li class=" font-normal
@@ -102,7 +104,7 @@
                   md:h-[100%] md:w-auto md:px-2  md:flex md:justify-center md:items-center ">
 
                 <a href="{% url 'logout' %}"
-                  class="duration-300 mb-1 p-4 text-myWhite-50 font-normal bg-myRed-700 hover:bg-myRed-800 rounded-md flex justify-start items-center  
+                  class="duration-300 mb-1 p-4 text-myWhite-50 font-normal bg-myRed-500 hover:bg-myRed-600 rounded-md flex justify-start items-center  
                   md:w-[100%] md:h-[80%] md:px-3  md:mb-0  md:flex md:justify-center md:items-center md:rounded-md">  
                   {% icon 'logout' %}
                   <h1 class="mx-2">Sair</h1>
@@ -122,7 +124,7 @@
           <div class="w-[40vw]   px-4 h-full flex justify-start items-center 
              md:w-[20%] 
           ">
-            JOBSJUA
+            <img width="100"  src="{% static 'svg/logo.svg' %}" alt="" srcset="">
           </div>
 
           <!-- ========== BOTÃO TIPO HAMBURGER ========== -->
@@ -157,7 +159,7 @@
             class=" hidden w-full bg-myGreen-500 h-[100vh] 
               md:w-[55%]  md:h-full md:flex  md:mr-4 md:bg-opacity-0
               lg:w-[45%] lg:mr-4
-              xl:w-[30%] xl:mr-4
+              xl:w-[35%] xl:mr-4
             ">
 
             <ul
@@ -202,7 +204,7 @@
                 md:h-[100%] md:w-full   md:flex md:justify-center md:items-center">
 
                 <a href="{% url 'login' %}"
-                  class="p-4 text-myWhite-50 font-normal bg-myBlue-700 hover:bg-myBlue-800 rounded-md flex justify-start items-center duration-300  
+                  class="p-4 text-myWhite-50 font-normal bg-myBlue-500 hover:bg-myBlue-600 rounded-md flex justify-start items-center duration-300  
                   md:w-auto md:h-[80%] md:px-3  md:mb-0  md:flex md:justify-center md:items-center md:rounded-md">  
                   {% icon 'login' %}
                   <h1 class="mx-2">Entrar</h1>
@@ -224,7 +226,15 @@
         {% endblock title-page %}
       </div>
 
+      <!-- ========== CONTEUDO DAS MENSAGENS E ALERTA ========== -->
+        {% for message in messages %}
+          <div class="p-4 mb-4 text-sm text-myRed-700 rounded-md bg-myRed-200 dark:bg-myRed-200 dark:text-myRed-700" role="error">
+            <span class="font-medium">Ops!</span> {{ message }}
+          </div>
+        {% endfor %}
+      
       <!-- ========== CONTEUDO PRINCIPAL ========== -->
+      
       <main class="py-5 rounded-md border-solid border border-myWhite-300 container flex flex-wrap justify-center items-center w-[90%] h-auto mb-8 md:flex-row md:w-[90vw] lg:flex-row lg:w-[70vw]"
       >
         {% block main %}{% endblock main %}

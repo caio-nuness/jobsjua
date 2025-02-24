@@ -15,8 +15,8 @@ class EnterpriseForm(UserCreationForm):
       max_length=14,
       widget=forms.TextInput(
         attrs={
-          'class': 'block w-full rounded-sm  px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-[#588157] sm:text-sm/6',
-          'placeholder': 'Informe o seu CNPJ....'
+          'class': 'block w-full p-2 rounded-sm  text-myGreen-800 outline outline-1 -outline-offset-1 outline-myGreen-300 placeholder:text-myWhite-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-myGreen-400 duration-300 text-sm/6',
+          'placeholder': 'Informe o seu CNPJ...'
         }
     )
   )
@@ -25,8 +25,8 @@ class EnterpriseForm(UserCreationForm):
     empty_value=False,
       widget=forms.TextInput(
         attrs={
-          'class': 'block w-full rounded-sm bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-[#588157] sm:text-sm/6',
-          'placeholder': 'Informe sua razão social'
+          'class': 'block w-full p-2 rounded-sm  text-myGreen-800 outline outline-1 -outline-offset-1 outline-myGreen-300 placeholder:text-myWhite-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-myGreen-400 duration-300 text-sm/6',
+          'placeholder': 'Informe sua razão social...'
         }
     )
   )
@@ -35,8 +35,8 @@ class EnterpriseForm(UserCreationForm):
     empty_value=False,
       widget=forms.TextInput(
         attrs={
-          'class': 'block w-full rounded-sm bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-[#588157] sm:text-sm/6',
-          'placeholder': 'Informe o ramo de atividade'
+          'class': 'block w-full p-2 rounded-sm  text-myGreen-800 outline outline-1 -outline-offset-1 outline-myGreen-300 placeholder:text-myWhite-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-myGreen-400 duration-300 text-sm/6',
+          'placeholder': 'Informe o ramo de atividade...'
         }
     )
   )
@@ -44,8 +44,8 @@ class EnterpriseForm(UserCreationForm):
   email = forms.EmailField(
     widget=forms.EmailInput(
       attrs={
-        'class': 'block w-full rounded-sm bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-[#588157] sm:text-sm/6',
-        'placeholder': 'Informe seu melhor email'
+        'class': 'block w-full p-2 rounded-sm  text-myGreen-800 outline outline-1 -outline-offset-1 outline-myGreen-300 placeholder:text-myWhite-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-myGreen-400 duration-300 text-sm/6',
+        'placeholder': 'Informe seu melhor email...'
       }
     )
   )
@@ -55,8 +55,8 @@ class EnterpriseForm(UserCreationForm):
     max_length=11,
       widget=forms.TextInput(
         attrs={
-          'class': 'block w-full rounded-sm bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-[#588157] sm:text-sm/6',
-          'placeholder': 'Informe seu telefone'
+          'class': 'block w-full p-2 rounded-sm  text-myGreen-800 outline outline-1 -outline-offset-1 outline-myGreen-300 placeholder:text-myWhite-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-myGreen-400 duration-300 text-sm/6',
+          'placeholder': 'Informe seu telefone...'
         }
     )
   )
@@ -65,8 +65,8 @@ class EnterpriseForm(UserCreationForm):
       max_length=11,
       widget=forms.TextInput(
         attrs={
-          'class': 'block w-full rounded-sm bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-[#588157] sm:text-sm/6',
-          'placeholder': 'Informe seu whatsapp'
+          'class': 'block w-full p-2 rounded-sm  text-myGreen-800 outline outline-1 -outline-offset-1 outline-myGreen-300 placeholder:text-myWhite-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-myGreen-400 duration-300 text-sm/6',
+          'placeholder': 'Informe seu whatsapp...'
         }
     )
   )
@@ -75,8 +75,8 @@ class EnterpriseForm(UserCreationForm):
     widget=forms.Select(
       choices=HIRING_CHOICES,
       attrs={
-         'class': 'block w-full rounded-sm bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-[#588157] sm:text-sm/6',
-          'placeholder': 'Digite sua senha novamente'
+         'class': 'block w-full p-2 rounded-sm  text-myGreen-800 outline outline-1 -outline-offset-1 outline-myGreen-300 placeholder:text-myWhite-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-myGreen-400 duration-300 text-sm/6',
+          'placeholder': 'Digite sua senha novamente...'
       }
     )
   )
@@ -85,8 +85,8 @@ class EnterpriseForm(UserCreationForm):
 
     widget=forms.PasswordInput(
       attrs={
-        'class': 'block w-full rounded-sm bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-[#588157] sm:text-sm/6',
-        'placeholder': 'Informe a sua senha.'
+        'class': 'block w-full p-2 rounded-sm  text-myGreen-800 outline outline-1 -outline-offset-1 outline-myGreen-300 placeholder:text-myWhite-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-myGreen-400 duration-300 text-sm/6',
+        'placeholder': 'Informe a sua senha...'
       }
     )
   )

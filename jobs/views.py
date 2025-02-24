@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Vacancie
-
 from django.core.paginator import Paginator
 
 def home(request):

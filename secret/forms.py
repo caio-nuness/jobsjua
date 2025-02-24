@@ -36,7 +36,7 @@ class VacancieForm(UserCreationForm):
       max_length=255,
       widget=forms.TextInput(
         attrs={
-          'class': 'block w-full rounded-sm  px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-[#588157] sm:text-sm/6',
+          'class': 'block w-full p-2 rounded-sm  text-myGreen-800 outline outline-1 -outline-offset-1 outline-myGreen-300 placeholder:text-myWhite-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-myGreen-400 duration-300 text-sm/6',
           'placeholder': 'Informe o titulo da sua vaga...'
         }
     )
@@ -47,7 +47,7 @@ class VacancieForm(UserCreationForm):
     required=True,
     widget=forms.EmailInput(
       attrs={
-        'class': 'block w-full rounded-sm  p-2 py-1.5 text-base text-main-greenBase outline outline-1 -outline-offset-1 outline-main-greenLight placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-main-greenLightHover sm:text-sm/6',
+        'class': ' block w-full p-2 rounded-sm  text-myGreen-800 outline outline-1 -outline-offset-1 outline-myGreen-300 placeholder:text-myWhite-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-myGreen-400 duration-300 text-sm/6',
         'placeholder': 'Informe seu melhor email'
       }
     )
@@ -59,7 +59,7 @@ class VacancieForm(UserCreationForm):
       max_length=14,
       widget=forms.TextInput(
         attrs={
-          'class': 'block w-full rounded-sm  px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-[#588157] sm:text-sm/6',
+          'class': ' block w-full p-2 rounded-sm  text-myGreen-800 outline outline-1 -outline-offset-1 outline-myGreen-300 placeholder:text-myWhite-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-myGreen-400 duration-300 text-sm/6',
           'placeholder': 'WhatsApp para contato...'
         }
     )
@@ -69,7 +69,7 @@ class VacancieForm(UserCreationForm):
       empty_value=False,
       widget=forms.TextInput(
         attrs={
-          'class': 'block w-full rounded-sm  px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-[#588157] sm:text-sm/6',
+          'class': ' block w-full p-2 rounded-sm  text-myGreen-800 outline outline-1 -outline-offset-1 outline-myGreen-300 placeholder:text-myWhite-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-myGreen-400 duration-300 text-sm/6',
           'placeholder': 'Valor do salário...'
         }
     )
@@ -80,7 +80,7 @@ class VacancieForm(UserCreationForm):
       widget=forms.Select(
         choices=TYPE_MODALITY,
         attrs={
-          'class': 'block w-full rounded-sm  px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-[#588157] sm:text-sm/6',
+          'class': ' block w-full p-2 rounded-sm  text-myGreen-800 outline outline-1 -outline-offset-1 outline-myGreen-300 placeholder:text-myWhite-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-myGreen-400 duration-300 text-sm/6',
           'placeholder': 'Modalidade de trabalho...'
         }
     )
@@ -91,7 +91,7 @@ class VacancieForm(UserCreationForm):
       widget=forms.Select(
         choices=TYPE_JOURNEY,
         attrs={
-          'class': 'block w-full rounded-sm  px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-[#588157] sm:text-sm/6',
+          'class': ' block w-full p-2 rounded-sm  text-myGreen-800 outline outline-1 -outline-offset-1 outline-myGreen-300 placeholder:text-myWhite-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-myGreen-400 duration-300 text-sm/6',
           'placeholder': 'Jornada de trabalho...'
         }
     )
@@ -101,7 +101,7 @@ class VacancieForm(UserCreationForm):
       empty_value=False,
       widget=forms.TextInput(
         attrs={
-          'class': 'block w-full rounded-sm  px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-[#588157] sm:text-sm/6',
+          'class': ' block w-full p-2 rounded-sm  text-myGreen-800 outline outline-1 -outline-offset-1 outline-myGreen-300 placeholder:text-myWhite-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-myGreen-400 duration-300 text-sm/6',
           'placeholder': 'Informe o turno de trabalho'
         }
     )
@@ -112,7 +112,7 @@ class VacancieForm(UserCreationForm):
       widget=forms.Select(
         choices=TYPE_STATE,
         attrs={
-          'class': 'block w-full rounded-sm  px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-[#588157] sm:text-sm/6',
+          'class': 'block w-full p-2 rounded-sm  text-myGreen-800 outline outline-1 -outline-offset-1 outline-myGreen-300 placeholder:text-myWhite-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-myGreen-400 duration-300 text-sm/6',
           'placeholder': 'Você está já está contratando...'
         }
     )
@@ -122,7 +122,7 @@ class VacancieForm(UserCreationForm):
       empty_value=False,
       widget=forms.Textarea(
         attrs={
-          'class': 'block w-full rounded-sm  px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-[#588157] sm:text-sm/6',
+          'class': ' block w-full p-2 rounded-sm  text-myGreen-800 outline outline-1 -outline-offset-1 outline-myGreen-300 placeholder:text-myWhite-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-myGreen-400 duration-300 text-sm/6',
           'placeholder': 'Preencha caso tenha mais informações especificações sobre a sua vaga de trabalho...'
         }
     )
@@ -139,7 +139,7 @@ class RecoveryPasswordForm(UserCreationForm):
     required=True,
     widget=forms.EmailInput(
       attrs={
-        'class': 'block w-full rounded-sm  p-2 text-base text-main-greenDark outline outline-1 -outline-offset-1 outline-main-greenLight placeholder:text-main-smokeDark focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-main-greenLightHover sm:text-sm/6',
+        'class': 'block w-full p-2 rounded-sm  text-myGreen-800 outline outline-1 -outline-offset-1 outline-myGreen-300 placeholder:text-myWhite-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-myGreen-400 duration-300 text-sm/6',
         'placeholder': 'Informe o email da sua conta...'
       }
     )
@@ -149,7 +149,7 @@ class RecoveryPasswordForm(UserCreationForm):
 
     widget=forms.PasswordInput(
       attrs={
-        'class': 'block w-full rounded-sm  p-2 text-base text-main-greenDark outline outline-1 -outline-offset-1 outline-main-greenLight placeholder:text-main-smokeDark focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-main-greenLightHover sm:text-sm/6',
+        'class': ' block w-full p-2 rounded-sm  text-myGreen-800 outline outline-1 -outline-offset-1 outline-myGreen-300 placeholder:text-myWhite-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-myGreen-400 duration-300 text-sm/6',
         'placeholder': 'Informe uma senha...'
       }
     )
@@ -159,7 +159,7 @@ class RecoveryPasswordForm(UserCreationForm):
 
     widget=forms.PasswordInput(
       attrs={
-        'class': 'block w-full rounded-sm  p-2 text-base text-main-greenDark outline outline-1 -outline-offset-1 outline-main-greenLight placeholder:text-main-smokeDark focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-main-greenLightHover sm:text-sm/6',
+        'class':' block w-full p-2 rounded-sm  text-myGreen-800 outline outline-1 -outline-offset-1 outline-myGreen-300 placeholder:text-myWhite-300 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-myGreen-400 duration-300 text-sm/6',
         'placeholder': 'Confirme sua nova senha...'
       }
     )
