@@ -7,4 +7,4 @@
 # Comandos Para Funcionar a Aplicação
   - minha maquina precisa ter o make instalado no sistema do OS
 
-# 
+# o segredo ta na configuração do tailwind onnde pegar os arquivos
