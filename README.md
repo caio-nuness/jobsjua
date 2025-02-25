@@ -6,3 +6,5 @@
 
 # Comandos Para Funcionar a Aplicação
   - minha maquina precisa ter o make instalado no sistema do OS
+
+# 
