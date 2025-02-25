@@ -1,8 +1,22 @@
-tailwind-whatch:
-	python manage.py tailwind start
+# Define o nome do arquivo WSGI do seu projeto
+WSGI_FILE = nome_do_seu_projeto.wsgi  # Substitua pelo nome correto
 
-python-start:
-	python manage.py runserver
+# Tarefa para executar as migrações
+migrate:
+        python manage.py migrate
 
+# Tarefa para iniciar o Gunicorn
 start:
-	make -j 2 tailwind-whatch python-start 
+        gunicorn --bind 0.0.0.0:8000 $(WSGI_FILE)
+
+
+build-tailwind:
+        python manage.py tailwind build
+       
+
+# Tarefa para rodar o tailwind
+tailwind-whatch:
+        python manage.py tailwind start
+
+run:
+        make migrate && make start && make build-tailwind
