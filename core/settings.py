@@ -1,23 +1,14 @@
 from pathlib import Path
 import os
+from dotenv import load_dotenv
+load_dotenv()
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-+z-cqsz686h^4!6gn3&+-=6rd#$gjwyhv6boilvrdu^+p2jb&!')
+DEBUG = os.environ.get('DJANGO_DEBUG', True)
+ALLOWED_HOSTS = ['*']
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-+z-cqsz686h^4!6gn3&+-=6rd#$gjwyhv6boilvrdu^+p2jb&!'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = ['192.168.1.7','localhost', '127.0.0.1']
-
-
-# Application definition
 INSTALLED_APPS = [
     'jazzmin',
     'rolepermissions',
@@ -29,15 +20,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'secret',
     'jobs',
-    
-    # Apps Externos 
     'django_icons',
     'tailwind',
     'theme',
     'django_browser_reload'
 ]
-
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -47,7 +34,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-     # MIDDLAWARE EXTERNO TAILWINDCSS
     "django_browser_reload.middleware.BrowserReloadMiddleware",
 ]
 
@@ -71,69 +57,44 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
-
-
-# Password validation
-# https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': os.environ.get('POSTGRES_DB', 'seu_banco_de_dados'),
+            'USER': os.environ.get('POSTGRES_USER', 'seu_usuario'),
+            'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'sua_senha'),
+            'HOST': os.environ.get('POSTGRES_HOST', 'db'),
+            'PORT': os.environ.get('POSTGRES_PORT', '5432'),
+        }
+    }
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
-
-
-# Internationalization
-# https://docs.djangoproject.com/en/5.1/topics/i18n/
 
 LANGUAGE_CODE = 'pt-BR'
-
 TIME_ZONE = 'America/Sao_Paulo'
-
 USE_I18N = True
-
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.1/howto/static-files/
-
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [ BASE_DIR / 'statifiles']
-STATICFILES_DIRS = [
-    BASE_DIR / 'static',
-    BASE_DIR / 'theme/static',
-]
-
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') #Adicionei essa linha
+#STATICFILES_DIRS = [ BASE_DIR / 'collectstatic'] #Comentei essa linha
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-# Referencia para o Modelo de User que Subistitui
 AUTH_USER_MODEL = 'jobs.Enterprise'
 
-# CONFIG DA LIB DOS ICONES [django-icons]
 DJANGO_ICONS = {
     "ICONS": {
         "login": {"name": "fa-duotone fa-solid fa-right-to-bracket"},
@@ -149,12 +110,6 @@ DJANGO_ICONS = {
     },
 }
 
-
-# CONFIGURAÇÃO TAILWINDCSS
 TAILWIND_APP_NAME = 'theme'
-
 INTERNAL_IPS = ["127.0.0.1",]
-
-#CONFIGURAÇÕES ROLES PERMISSIONS
-
 ROLEPERMISSIONS_MODULE = "core.roles"
