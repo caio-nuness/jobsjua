@@ -1,7 +1,9 @@
-from .settings import * # Importa as configurações do settings.py base
+from .base import * # Importa as configurações do settings.py base
 import os
 
-DEBUG = False #Desativa o debug
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
+
+DEBUG = False 
 
 ALLOWED_HOSTS = ['jobsjua.com', 'www.jobsjua.com',]
 
@@ -17,5 +19,5 @@ DATABASES = {
 }
 
 # Configurações adicionais para produção
+STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_DIRS = [ BASE_DIR / 'staticfiles',BASE_DIR / 'static'] 

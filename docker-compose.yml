@@ -14,7 +14,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: gunicorn core.wsgi:application --bind 0.0.0.0:8000
+    command: sh -c "echo 'DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}' && echo 'DJANGO_DEBUG=${DJANGO_DEBUG}' && echo 'POSTGRES_USER=${POSTGRES_USER}' && echo 'POSTGRES_PASSWORD=${POSTGRES_PASSWORD}' && echo 'POSTGRES_DB=${POSTGRES_DB}' && echo 'POSTGRES_HOST=${POSTGRES_HOST}' && echo 'POSTGRES_PORT=${POSTGRES_PORT}' && gunicorn core.wsgi:application --bind 0.0.0.0:8000"
     volumes:
       - .:/app
     expose:
@@ -27,6 +27,8 @@ services:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_HOST: ${POSTGRES_HOST}
+      POSTGRES_PORT: ${POSTGRES_PORT}
 
   nginx:
     build:
@@ -34,10 +36,13 @@ services:
       dockerfile: Dockerfile.nginx
     ports:
       - 80:80
+    volumes:
+      - static_volume:/app/staticfiles
     depends_on:
       - web
 
 volumes:
   postgres_data:
+  static_volume:
   
  

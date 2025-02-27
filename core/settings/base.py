@@ -1,12 +1,14 @@
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+
+# Carrega as variáveis de ambiente do arquivo .env
 load_dotenv()
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-+z-cqsz686h^4!6gn3&+-=6rd#$gjwyhv6boilvrdu^+p2jb&!')
-DEBUG = os.environ.get('DJANGO_DEBUG', True)
+DEBUG = os.environ.get('DJANGO_DEBUG', 'True') 
 ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
@@ -57,25 +59,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
-if DEBUG:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': os.environ.get('POSTGRES_DB', 'seu_banco_de_dados'),
-            'USER': os.environ.get('POSTGRES_USER', 'seu_usuario'),
-            'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'sua_senha'),
-            'HOST': os.environ.get('POSTGRES_HOST', 'db'),
-            'PORT': os.environ.get('POSTGRES_PORT', '5432'),
-        }
-    }
-
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
     {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
@@ -88,9 +71,11 @@ TIME_ZONE = 'America/Sao_Paulo'
 USE_I18N = True
 USE_TZ = True
 
-STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') #Adicionei essa linha
-STATICFILES_DIRS = [ BASE_DIR / 'static'] 
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'jobs.Enterprise'
