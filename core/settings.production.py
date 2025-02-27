@@ -1,9 +1,9 @@
-from .core.settings import * # Importa as configurações do settings.py base
+from .settings import * # Importa as configurações do settings.py base
 import os
 
 DEBUG = False #Desativa o debug
 
-ALLOWED_HOSTS = ['seu-dominio.com', 'www.seudominio.com', 'localhost']
+ALLOWED_HOSTS = ['jobsjua.com', 'www.jobsjua.com',]
 
 DATABASES = {
     'default': {
@@ -18,3 +18,4 @@ DATABASES = {
 
 # Configurações adicionais para produção
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = [ BASE_DIR / 'staticfiles',BASE_DIR / 'static'] 

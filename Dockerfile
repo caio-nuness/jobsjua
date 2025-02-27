@@ -1,9 +1,12 @@
-FROM python:3.11-slim as build
+FROM python:3.11-slim AS build
 
 WORKDIR /app
 
-RUN apt-get update 
-RUN apt-get install -y nodejs
+
+RUN apt-get update \
+    && apt-get install -y curl \
+    && curl -fsSL https://deb.nodesource.com/setup_16.x | bash - \
+    && apt-get install -y nodejs
 
 COPY requirements.txt /app/
 
@@ -29,12 +32,15 @@ WORKDIR /app
 COPY --from=build /app/staticfiles /app/staticfiles
 COPY --from=build /app /app
 COPY requirements.txt /app/
+COPY .env /app/
 
 RUN python -m venv venv
 ENV PATH="/venv/bin:$PATH"
 
 RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
+
+RUN python manage.py migrate 
 
 EXPOSE 8000
 
