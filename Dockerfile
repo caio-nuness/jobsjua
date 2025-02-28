@@ -54,9 +54,6 @@ ENV PATH="/venv/bin:$PATH"
 RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Comando para aplicar as migrações
-RUN python manage.py migrate --settings=core.settings.production
-
 EXPOSE 8000
 
 CMD ["gunicorn", "core.wsgi:application", "--bind", "0.0.0.0:8000", "--settings=core.settings.production"]

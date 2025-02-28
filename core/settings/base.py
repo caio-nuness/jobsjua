@@ -1,15 +1,8 @@
-from pathlib import Path
 import os
-from dotenv import load_dotenv
-
-# Carrega as variáveis de ambiente do arquivo .env
-load_dotenv()
+from pathlib import Path
+from decouple import config
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
-
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-+z-cqsz686h^4!6gn3&+-=6rd#$gjwyhv6boilvrdu^+p2jb&!')
-DEBUG = os.environ.get('DJANGO_DEBUG', 'True') 
-ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'jazzmin',
@@ -25,7 +18,8 @@ INSTALLED_APPS = [
     'django_icons',
     'tailwind',
     'theme',
-    'django_browser_reload'
+    'django_browser_reload',
+    'decouple',
 ]
 
 MIDDLEWARE = [
@@ -96,5 +90,7 @@ DJANGO_ICONS = {
 }
 
 TAILWIND_APP_NAME = 'theme'
+
 INTERNAL_IPS = ["127.0.0.1",]
+
 ROLEPERMISSIONS_MODULE = "core.roles"

@@ -6,29 +6,35 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     environment:
+      POSTGRES_DB: ${POSTGRES_DB}
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: ${POSTGRES_DB}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   web:
     build:
       context: .
       dockerfile: Dockerfile
-    command: sh -c "echo 'DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}' && echo 'DJANGO_DEBUG=${DJANGO_DEBUG}' && echo 'POSTGRES_USER=${POSTGRES_USER}' && echo 'POSTGRES_PASSWORD=${POSTGRES_PASSWORD}' && echo 'POSTGRES_DB=${POSTGRES_DB}' && echo 'POSTGRES_HOST=${POSTGRES_HOST}' && echo 'POSTGRES_PORT=${POSTGRES_PORT}' && gunicorn core.wsgi:application --bind 0.0.0.0:8000"
+    command: sh -c "python manage.py migrate --settings=core.settings.production && gunicorn core.wsgi:application --bind 0.0.0.0:8000"
     volumes:
       - .:/app
     expose:
       - 8000
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     environment:
       DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY}
       DJANGO_DEBUG: "${DJANGO_DEBUG}"
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
-      POSTGRES_HOST: ${POSTGRES_HOST}
-      POSTGRES_PORT: ${POSTGRES_PORT}
+      POSTGRES_HOST: db
+      POSTGRES_PORT: 5432
 
   nginx:
     build:
@@ -44,5 +50,3 @@ services:
 volumes:
   postgres_data:
   static_volume:
-  
- 
