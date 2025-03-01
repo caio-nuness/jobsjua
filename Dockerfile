@@ -48,9 +48,8 @@ WORKDIR /app
 COPY --from=build /app /app
 
 # Cria um ambiente virtual e instala as dependências do Python
-RUN python -m venv venv
 ENV PATH="/venv/bin:$PATH"
-# atualiza o pip e instala as dependências do Python no ambiente virtual
+
 RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
