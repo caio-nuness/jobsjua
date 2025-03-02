@@ -3,9 +3,10 @@ from .base import * # Importa as configurações do settings.py base
 from decouple import config
 
 SECRET_KEY = config('DJANGO_SECRET_KEY', 'secret_key')
-DEBUG = config('DJANGO_DEBUG', default=False) 
 
-ALLOWED_HOSTS = ['jobsjua.com', 'www.jobsjua.com',]
+DEBUG = config('DJANGO_DEBUG', default=True) 
+
+ALLOWED_HOSTS = ['localhost',]
 
 DATABASES = {
     'default': {
@@ -18,6 +19,14 @@ DATABASES = {
     }
 }
 
-# Configurações adicionais para produção
-STATIC_URL = '/static/'
+
+# Diretório onde os arquivos estáticos serão coletados
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# URL para acessar os arquivos estáticos
+STATIC_URL = '/static/'
+
+# Diretórios adicionais para buscar arquivos estáticos
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]

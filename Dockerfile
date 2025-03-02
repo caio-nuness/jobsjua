@@ -10,10 +10,6 @@ RUN apt-get update \
 COPY .env /app/
 COPY requirements.txt /app/
 
-# Cria um ambiente virtual e instala as dependências do Python
-RUN python -m venv venv
-ENV PATH="/venv/bin:$PATH"
-
 # atualiza o pip e instala as dependências do Python no ambiente virtual
 RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
@@ -37,8 +33,10 @@ COPY . /app/
 # Executa o comando para instalar o Tailwind CSS e compilar os arquivos CSS
 RUN python manage.py tailwind install 
 RUN python manage.py tailwind build 
-RUN python manage.py collectstatic --noinput 
+RUN pip install --no-cache-dir -r requirements.txt
 
+# Colete os arquivos estáticos
+RUN python manage.py collectstatic --noinput 
 
 FROM python:3.11-slim
 
@@ -47,12 +45,11 @@ WORKDIR /app
 # Copia o ambiente virtual do contêiner de compilação para o contêiner de produção
 COPY --from=build /app /app
 
-# Cria um ambiente virtual e instala as dependências do Python
-ENV PATH="/venv/bin:$PATH"
-
 RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
 EXPOSE 8000
 
-CMD ["gunicorn", "core.wsgi:application", "--bind", "0.0.0.0:8000", "--settings=core.settings.production"]
+ENV DJANGO_SETTINGS_MODULE=core.settings.production
+
+CMD ["gunicorn", "core.wsgi:application", "--bind", "0.0.0.0:8000"]
