@@ -33,6 +33,7 @@ COPY . /app/
 # Executa o comando para instalar o Tailwind CSS e compilar os arquivos CSS
 RUN python manage.py tailwind install 
 RUN python manage.py tailwind build 
+
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Colete os arquivos estáticos

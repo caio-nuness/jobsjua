@@ -2,14 +2,7 @@ module.exports = {
     content: [
    
         '../../templates/**/*.html',
-         '../../**/templates/**/*.html',
-
-        '../jobs/**/*.py',
-        '../secret/**/*.py',
-
-        '../../jobs/**/*.py',
-        '../../secret/**/*.py',
-
+        '../../**/templates/**/*.html',
         '../../**/jobs/**/*.py',
         '../../**/secret/**/*.py',
     ],

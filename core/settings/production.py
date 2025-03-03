@@ -26,7 +26,4 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # URL para acessar os arquivos estáticos
 STATIC_URL = '/static/'
 
-# Diretórios adicionais para buscar arquivos estáticos
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
+
