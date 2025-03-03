@@ -26,4 +26,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # URL para acessar os arquivos estáticos
 STATIC_URL = '/static/'
 
+# Diretório onde os arquivos de mídia serão coletados
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'theme/static_src'),  # Adicione este diretório
+]
 

@@ -9,5 +9,5 @@ urlpatterns = [
     path('auth/', include('secret.urls'), name='auth'),
     
     # URLS DO DJANGO-TAILWINDCSS-RELOAD
-    path("__reload__/", include("django_browser_reload.urls")),
+   
 ] 
