@@ -6,18 +6,26 @@ SECRET_KEY = config('DJANGO_SECRET_KEY', 'secret_key')
 
 DEBUG = config('DJANGO_DEBUG', default=True) 
 
-ALLOWED_HOSTS = ['localhost',]
+ALLOWED_HOSTS = ['*',]
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': config('POSTGRES_DB', 'database_name'),
-        'USER': config('POSTGRES_USER', 'database_user'),
-        'PASSWORD': config('POSTGRES_PASSWORD', 'database_password'),
-        'HOST': config('POSTGRES_HOST', 'database_host_db'),
-        'PORT': config('POSTGRES_PORT', 'database_port_db'),
+if DEBUG == False:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': config('POSTGRES_DB', 'database_name'),
+            'USER': config('POSTGRES_USER', 'database_user'),
+            'PASSWORD': config('POSTGRES_PASSWORD', 'database_password'),
+            'HOST': config('POSTGRES_HOST', 'database_host_db'),
+            'PORT': config('POSTGRES_PORT', 'database_port_db'),
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 
 # Diretório onde os arquivos estáticos serão coletados
@@ -29,6 +37,5 @@ STATIC_URL = '/static/'
 # Diretório onde os arquivos de mídia serão coletados
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
-    os.path.join(BASE_DIR, 'theme/static_src'),  # Adicione este diretório
 ]
 

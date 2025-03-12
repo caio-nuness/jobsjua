@@ -16,8 +16,6 @@ INSTALLED_APPS = [
     'secret',
     'jobs',
     'django_icons',
-    'tailwind',
-    'theme',
     'decouple',
 ]
 
@@ -81,8 +79,6 @@ DJANGO_ICONS = {
     },
 }
 
-TAILWIND_APP_NAME = 'theme'
 
-INTERNAL_IPS = ["127.0.0.1",]
 
 ROLEPERMISSIONS_MODULE = "core.roles"
