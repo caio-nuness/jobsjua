@@ -6,7 +6,7 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     environment:
-      DJANGO_SETTINGS_MODULE: core.settings.production
+      DJANGO_SETTINGS_MODULE: core.settings.base
       POSTGRES_DB: ${POSTGRES_DB}
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
@@ -20,7 +20,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: sh -c "python manage.py migrate --settings=core.settings.production && gunicorn core.wsgi:application --bind 0.0.0.0:8000"
+    command: sh -c "python manage.py migrate --settings=core.settings.base && gunicorn core.wsgi:application --bind 0.0.0.0:8000"
     volumes:
       - .:/app
       - static_volume:/app/staticfiles
@@ -30,7 +30,7 @@ services:
       db:
         condition: service_healthy
     environment:
-      DJANGO_SETTINGS_MODULE: core.settings.production
+      DJANGO_SETTINGS_MODULE: core.settings.base
       DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY}
       DJANGO_DEBUG: "${DJANGO_DEBUG}"
       POSTGRES_USER: ${POSTGRES_USER}
