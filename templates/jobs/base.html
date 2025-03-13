@@ -1,4 +1,4 @@
-{% load static icons %}
+{% load static icons tailwind_tags %}
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -11,6 +11,7 @@
       href="{% static 'img/favicon.png' %}"
       type="image/x-icon"
     />
+    {% tailwind_css %}
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -252,10 +253,6 @@
       </footer>
     </div>
 
-    <script src="{% static 'js/base/hamburger.js' %}"></script>
-    <script src="https://cdn.tailwindcss.com/3.4.0"></script>
-    <script src="{% static 'js/base/tailwind.js' %}"></script>
-
-
+    <script src="{% static 'js/hamburger.js' %}"></script>
   </body>
 </html>

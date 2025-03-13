@@ -2,3 +2,4 @@
 staticfiles/
 venv/
 .dockerignore
+node_modules

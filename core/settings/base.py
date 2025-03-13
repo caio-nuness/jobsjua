@@ -8,7 +8,7 @@ SECRET_KEY = config('DJANGO_SECRET_KEY', 'secret_key')
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['*',]
+ALLOWED_HOSTS = ['localhost', '192.168.1.7', '192.168.1.1']
 
 INSTALLED_APPS = [
     'jazzmin',
@@ -23,10 +23,15 @@ INSTALLED_APPS = [
     'jobs',
     'django_icons',
     'decouple',
+    'tailwind',
+    'theme',
+    'django_browser_reload'
+
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'django_browser_reload.middleware.BrowserReloadMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -90,7 +95,10 @@ USE_TZ = True
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Diretório onde os arquivos de mídia serão coletados
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'theme/static/css/dist/'),
+]
 
 # Diretório para onde os arquivos estáticos serão enviados
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
@@ -119,3 +127,7 @@ DJANGO_ICONS = {
 
 # CONFIGURAÇÃO DE ROLEPERMISSIONS
 ROLEPERMISSIONS_MODULE = "core.roles"
+
+# TAILWINDCSS
+TAILWIND_APP_NAME = 'theme'
+INTERNAL_IPS = ["127.0.0.1",]
